@@ -1,0 +1,62 @@
+/* navbar */
+
+.navbar {
+    background-color: transparent;
+    transition: 1.2s;
+    background-color: #039564;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+}
+
+div.card:hover {
+    background: #EAEAEA;
+}
+
+
+.text-white {
+    color: rgb(255, 255, 255) !important;
+}
+
+/* .font-family {
+
+} */
+
+@media (min-width: 992px) {
+    .navbar {
+        background-color: transparent;
+        transition: 1.2s;
+        background-color: rgba(22, 22, 22, 0);
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 1030
+    }
+
+    /* transformasi efek scroll */
+    .navbar.shrink {
+        content: '';
+        display: block;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 100);
+        box-shadow: 2px 0px 8px 0px rgb(145, 145, 145);
+        width: 100%;
+    }
+
+
+    .text-white.shrink {
+        /* color: rgb(5, 5, 5) !important; */
+        /* color: rgb(255, 255, 255) !important; */
+        color: black !important;
+    }
+
+    .text-white {
+        color: rgb(255, 255, 255) !important;
+    }
+
+    .nav-link {
+        color: rgb(255, 255, 255) !important;
+    }
+}
