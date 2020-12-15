@@ -42,19 +42,40 @@ class PerhitunganController extends Controller
         $fitur = $request->input('fitur');
 
         $kasus_ids = [];
-        $kasus = [];
+        $kasuses = [];
 
         foreach ($fitur as $f) {
             $detailKasus = DetailKasus::where('fitur_id', $f)->get();
             foreach ($detailKasus as $d) {
-                if (!empty((in_array($d->kasus_id, $kasus_ids)))) {
+                if (!(in_array($d->kasus_id, $kasus_ids))) {
                     array_push($kasus_ids, $d->kasus_id);
 
                     $dk = DetailKasus::where('kasus_id', $d->kasus_id)->get();
-                    array_push($kasus, $dk);
+                    array_push($kasuses, $dk);
                 }
             }
         }
+
+        $total_bobot = 0;
+        $total_bobot_terpilih = 0;
+        $list_hasil_perhitungan = [];
+
+        foreach ($kasuses as $kasus) {
+            foreach ($kasus as $dk) {
+                $total_bobot += $dk->bobot;
+
+                if (in_array($dk->fitur_id, $fitur)) {
+                    $total_bobot_terpilih += $dk->bobot;
+                }
+            }
+            $hasil_perhitungan = $total_bobot_terpilih / $total_bobot * 100;
+            array_push($list_hasil_perhitungan, $hasil_perhitungan);
+            
+            $total_bobot = 0;
+            $total_bobot_terpilih = 0;
+        }
+
+        return json_encode($list_hasil_perhitungan);
     }
 
     /**

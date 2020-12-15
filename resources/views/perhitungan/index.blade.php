@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <form action="{{route('perhitungan.store')}}">
+    <form action="{{route('perhitungan.store')}}" method="POST">
         @csrf
         <table>
             <thead>
