@@ -32,6 +32,14 @@ active
         <form action="{{ route('kasus.store') }}" method="POST">
             @csrf
             <div class="form-group">
+                <label for="">Tipe Laptop</label>
+                <input name="tipe_laptop" type="text" class=" form-control {{$errors->first('tipe_laptop') ? 'is-invalid':''}}"
+                    value="{{old('tipe_laptop')}}" maxlength="190" required>
+                @error('tipe_laptop')
+                <div class="invalid-feedback">
+                    {{$message}}
+                </div>
+                @enderror
                 <label for="">Nama Kasus</label>
                 <input name="nama_kasus" type="text" class=" form-control {{$errors->first('nama_kasus') ? 'is-invalid':''}}"
                     value="{{old('nama_kasus')}}" maxlength="190" required>

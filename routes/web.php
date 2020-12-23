@@ -63,3 +63,10 @@ Route::group(['prefix' => 'kasus/detail'], function () {
 Route::get('perhitungan','PerhitunganController@index')->name('perhitungan.index');
 Route::post('perhitungan', 'PerhitunganController@store')->name('perhitungan.store');
 
+Route::get('cbruser', function () {
+   return view('layouts.user'); 
+});
+
+Route::get('histori-diagnosa', 'HistoriDiagnosaController@index')->name('histori-diagnosa');
+Route::get('histori-diagnosa/{id}', 'HistoriDiagnosaController@detail')->name('histori-diagnosa.detail');
+

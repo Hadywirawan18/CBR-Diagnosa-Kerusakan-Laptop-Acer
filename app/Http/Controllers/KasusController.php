@@ -33,10 +33,12 @@ class KasusController extends Controller
         // validasi request
         $request->validate(
             [
+                'tipe_laptop' => "required|max:10",
                 'nama_kasus' => "required|max:191",
                 'solusi' => "required",
             ],
             [
+                'tipe_laptop.required' => 'Tipe Laptop kasus harus diisi',
                 'nama_kasus.required' => 'Nama kasus harus diisi',
                 'nama_kasus.max' => 'Nama kasus tidak boleh melebihi 191 karakter',
                 'solusi.required' => 'Solusi harus diisi',
@@ -87,10 +89,12 @@ class KasusController extends Controller
     {
         $request->validate(
             [
+                'tipe_laptop' => "required|max:10",
                 'nama_kasus' => "required|max:191",
                 'solusi' => "required",
             ],
             [
+                'tipe_laptop.required' => 'Tipe Laptop kasus harus diisi',
                 'nama_kasus.required' => 'Nama kasus harus diisi',
                 'nama_kasus.max' => 'Nama kasus tidak boleh melebihi 191 karakter',
                 'solusi.required' => 'Solusi harus diisi',
@@ -99,7 +103,7 @@ class KasusController extends Controller
 
         $kasus = Kasus::findOrFail($id);
         $kasus->update($request->all());
-        return redirect()->route('kasus.edit', ['kasus' => $id])->with('status', "Kasus \"$kasus->nama_kasus\" berhasil diedit");
+        return redirect()->route('kasus.edit', ['kasus' => $id])->with('status', "Kasus \"$kasus->tipe_laptop\" Dengan Diagnosa \"$kasus->nama_kasus\" berhasil diedit");
     }
 
     // fungsi ini digunakan untuk menghapus data pada database berdasarkan id pada parameter

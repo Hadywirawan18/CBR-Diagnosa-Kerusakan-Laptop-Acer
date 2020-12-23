@@ -19,7 +19,7 @@ class CreateDetailKasusesTable extends Migration
 
             //relasi tabel kasus
             $table->bigInteger('kasus_id')->unsigned();
-            $table->foreign('kasus_id')->references('id')->on('kasus');
+            $table->foreign('kasus_id')->references('id')->on('kasus')->onDelete('cascade');
 
             //relasi tabel fitur
             $table->bigInteger('fitur_id')->unsigned();

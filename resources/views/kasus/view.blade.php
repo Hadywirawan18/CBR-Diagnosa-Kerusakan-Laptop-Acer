@@ -40,6 +40,12 @@ active
         <table class="table" style="width:100%">
             <tbody>
                 <tr>
+                    <td><strong>Tipe Laptop</strong></td>
+                    <td>
+                        <input type="text" class="form-control" value="{{$kasus->tipe_laptop}}" disabled>
+                    </td>
+                </tr>
+                <tr>
                     <td><strong>Nama Kasus</strong></td>
                     <td>
                         <input type="text" class="form-control" value="{{$kasus->nama_kasus}}" disabled>

@@ -53,13 +53,14 @@
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
+                        Login
                         <i class="far fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="dropdown-item">
-                                <i class="fas fa-sign-out-alt mr-2" style="color: grey"></i> Keluar
+                                <i class="fas fa-sign-in-alt mr-2" style="color: grey"></i> Login
                             </button>
                         </form>
                     </div>
@@ -71,19 +72,18 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="#" class="brand-link">
-                <span class="brand-text font-weight-light ml-2"></span>
+                <h6>Diagnosa Kerusakan Laptop Acer</h6>
+                <span class="brand-text font-weight-light"></span>
             </a>
 
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <i class="fas fa-user fa-2x ml-3" style="color: white"></i>
+                    <i class="fas fa-home fa-2x ml-3" style="color: white"></i>
                     <div class="info">
                         <a href="#" class="d-block font-weight-bold">
-                            @auth
-                                {{strtoupper(Auth::user()->name)}}
-                            @endauth
+                            Beranda
                         </a>
                     </div>
                 </div>
@@ -95,55 +95,51 @@
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
                         <!-- <li class="nav-header">CBR</li> -->
-                        <li class="nav-item has-treeview menu-open mb-2">
-                            <a href="#" class="nav-link @yield('menu-kasus')">
+                        <li class="nav-item has-treeview mb-2">
+                            <a href="#" class="nav-link @yield('menu-diagnosa')">
                                 <i class="nav-icon fas fa-laptop-medical"></i>
                                 <p>
-                                    Basis Kasus
+                                    Diagnosa
                                     <i class="right fa fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('kasus.index')}}"
-                                        class="nav-link @yield('menu-kasus-daftar')">
+                                    <a href="{{ route("histori-diagnosa") }}" class="nav-link @yield('menu-diagnosa-')">
                                         <i class="fas fa-list nav-icon"></i>
-                                        <p>Daftar Basis Kasus</p>
+                                        <p>Histori Diagnosa</p>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('kasus.create')}}"
-                                        class="nav-link @yield('menu-kasus-tambah')">
+                                    <a href="#" class="nav-link @yield('menu-diagnosa-')">
                                         <i class="fas fa-plus nav-icon"></i>
-                                        <p>Tambah</p>
+                                        <p>Kasus Baru</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
 
-                        <li class="nav-item has-treeview menu-open mb-2">
-                            <a href="#" class="nav-link @yield('menu-fitur')">
+                        <li class="nav-item has-treeview mb-2">
+                            <a href="#" class="nav-link @yield('menu-informasi')">
                                 <i class="nav-icon far fa-check-square"></i>
                                 <p>
-                                    Fitur
+                                    Informasi
                                     <i class="right fa fa-angle-left"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('fitur.index')}}"
-                                        class="nav-link @yield('menu-fitur-daftar')">
+                                    <a href="#" class="nav-link @yield('menu-informasi-daftar')">
                                         <i class="fas fa-list nav-icon"></i>
-                                        <p>Daftar Fitur</p>
+                                        <p>Daftar informasi</p>
                                     </a>
                                 </li>
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{route('fitur.create')}}"
-                                        class="nav-link @yield('menu-fitur-tambah')">
+                                    <a href="#" class="nav-link @yield('menu-informasi-tambah')">
                                         <i class="fas fa-plus nav-icon"></i>
                                         <p>Tambah</p>
                                     </a>
@@ -151,6 +147,31 @@
                             </ul>
                         </li>
 
+                        <li class="nav-item has-treeview mb-2">
+                            <a href="#" class="nav-link @yield('menu-bantuan')">
+                                <i class="nav-icon far fa-question-circle"></i>
+                                <p>
+                                    Bantuan
+                                    <i class="right fa fa-angle-left"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link @yield('menu-bantuan-daftar')">
+                                        <i class="nav-icon fas fa-info"></i>
+                                        <p>Tentang</p>
+                                    </a>
+                                </li>
+                            </ul>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link @yield('menu-bantuan-daftar')">
+                                        <i class="nav-icon far fa-question-circle"></i>
+                                        <p>Penggunaan</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

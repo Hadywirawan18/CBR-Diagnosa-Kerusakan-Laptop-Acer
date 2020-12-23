@@ -39,8 +39,9 @@ class PerhitunganController extends Controller
      */
     public function store(Request $request)
     {
+        //Perhitungan Nearest Neihgbour
         $fitur = $request->input('fitur');
-
+        //menampung tiap kasus dan fitur yang ada
         $kasus_ids = [];
         $kasuses = [];
 
@@ -55,7 +56,7 @@ class PerhitunganController extends Controller
                 }
             }
         }
-
+        //perhitungan masing-masing fitur
         $total_bobot = 0;
         $total_bobot_terpilih = 0;
         $list_hasil_perhitungan = [];
