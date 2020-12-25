@@ -19,6 +19,7 @@ use App\Fitur;
 |   bedanya dengan getFitur() fungsi ini menyediakan option checkbox
 |
 */
+
 class DataTableController extends Controller
 {
     // constructor ini fungsi untuk menerapkan authentikasi sebelum dapat mengakses fungsi getFitur(),
@@ -32,7 +33,7 @@ class DataTableController extends Controller
     {
         return datatables()->of(Kasus::all())
             ->addColumn('aksi', function ($kasus) {
-                return '<a href="' . route('kasus.show', ['kasus'=> $kasus->id]) . '" class="btn btn-success btn-sm mr-2">View</a>' 
+                return '<a href="' . route('kasus.show', ['kasus' => $kasus->id]) . '" class="btn btn-success btn-sm mr-2">View</a>'
                     . '<a href="' . route('kasus.edit', ['kasus' => $kasus->id]) . '" class="btn btn-warning btn-sm mr-2">Edit</a>'
                     . '<button type="button" class="btn btn-danger btn-sm btn-delete" data-remote="' . route('kasus.destroy', ['kasus' => $kasus->id]) . '">Delete</button>';
             })
@@ -55,11 +56,19 @@ class DataTableController extends Controller
     {
         return datatables()->of(Fitur::all())
             ->addColumn('checkbox', function ($fitur) {
-                return '<input type="checkbox" class="form-control" name="checks[]" value="'.$fitur->id.'">';
+                return '<input type="checkbox" class="form-control" name="checks[]" value="' . $fitur->id . '">';
             })
             ->rawColumns(['checkbox'])
             ->toJson();
     }
 
-
+    public function getHistoriKasus()
+    {
+        return datatables()->of(Kasus::all())
+            ->addColumn('aksi', function ($detail) {
+                return '<a href="' . route('histori-diagnosa.show', ['id' => $detail->id]) . '" class="btn btn-info btn-sm text-white shadow">Detail</a>';
+            })
+            ->rawColumns(['aksi'])
+            ->toJson();
+    }
 }

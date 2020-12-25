@@ -95,7 +95,7 @@
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
                         <!-- <li class="nav-header">CBR</li> -->
-                        <li class="nav-item has-treeview mb-2">
+                        <li class="nav-item has-treeview mb-2 @yield('menu-diagnosa-open')")>
                             <a href="#" class="nav-link @yield('menu-diagnosa')">
                                 <i class="nav-icon fas fa-laptop-medical"></i>
                                 <p>
@@ -105,7 +105,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{ route("histori-diagnosa") }}" class="nav-link @yield('menu-diagnosa-')">
+                                    <a href="{{ route("histori-diagnosa.index") }}" class="nav-link @yield('histori-diagnosa')">
                                         <i class="fas fa-list nav-icon"></i>
                                         <p>Histori Diagnosa</p>
                                     </a>
@@ -113,7 +113,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link @yield('menu-diagnosa-')">
+                                    <a href="{{ route("tambah-kasus") }}" class="nav-link @yield('new-case')">
                                         <i class="fas fa-plus nav-icon"></i>
                                         <p>Kasus Baru</p>
                                     </a>

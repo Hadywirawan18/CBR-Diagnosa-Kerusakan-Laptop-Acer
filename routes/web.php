@@ -11,6 +11,7 @@
 |
 */
 
+
 Route::get('/', function () {
     return redirect()->route('kasus.index');
 });
@@ -27,15 +28,16 @@ Route::group(['prefix' => 'getdata'], function () {
     Route::get('kasus', 'DataTableController@getKasus')->name('getdata.kasus');
     Route::get('fitur', 'DataTableController@getFitur')->name('getdata.fitur');
     Route::get('fitur-cb', 'DataTableController@getFiturCheckbox')->name('getdata.fitur.cb');
+    Route::get('histori-kasus', 'DataTableController@getHistoriKasus')->name('getdata.historikasus');
 });
 
 
 // app kasus
 Route::group(['prefix' => 'kasus'], function () {
-    Route::get('/', 'KasusController@index')->name('kasus.index');                  
+    Route::get('/', 'KasusController@index')->name('kasus.index');
     Route::get('create', 'KasusController@create')->name('kasus.create');
     Route::post('/', 'KasusController@store')->name('kasus.store');
-    Route::get('{kasus}', 'KasusController@show')->name('kasus.show');                  
+    Route::get('{kasus}', 'KasusController@show')->name('kasus.show');
     Route::get('{kasus}/edit', 'KasusController@edit')->name('kasus.edit');
     Route::put('{kasus}', 'KasusController@update')->name('kasus.update');
     Route::delete('{kasus}', 'KasusController@destroy')->name('kasus.destroy');
@@ -43,7 +45,7 @@ Route::group(['prefix' => 'kasus'], function () {
 
 // app fitur
 Route::group(['prefix' => 'fitur'], function () {
-    Route::get('/', 'FiturController@index')->name('fitur.index');                  
+    Route::get('/', 'FiturController@index')->name('fitur.index');
     Route::get('create', 'FiturController@create')->name('fitur.create');
     Route::post('/', 'FiturController@store')->name('fitur.store');
     Route::get('{fitur}/edit', 'FiturController@edit')->name('fitur.edit');
@@ -60,13 +62,22 @@ Route::group(['prefix' => 'kasus/detail'], function () {
     Route::put('{kasus_detail}', 'KasusDetailController@update')->name('kasus.detail.update');
 });
 
-Route::get('perhitungan','PerhitunganController@index')->name('perhitungan.index');
-Route::post('perhitungan', 'PerhitunganController@store')->name('perhitungan.store');
 
 Route::get('cbruser', function () {
-   return view('layouts.user'); 
+    return view('layouts.user');
 });
 
-Route::get('histori-diagnosa', 'HistoriDiagnosaController@index')->name('histori-diagnosa');
-Route::get('histori-diagnosa/{id}', 'HistoriDiagnosaController@detail')->name('histori-diagnosa.detail');
-
+// app histori diagnosa
+Route::group(['prefix' => 'user'], function () {
+    Route::get('/', 'HistoriDiagnosaController@index')->name('histori-diagnosa.index');
+    Route::get('detail/{id}', 'HistoriDiagnosaController@show')->name('histori-diagnosa.show');
+    Route::get('tambah-kasus', 'PerhitunganController@index')->name('tambah-kasus');
+    Route::post('tambah-kasus', 'PerhitunganController@store')->name('tambah-kasus.store');
+    // Route::post('/', 'KasusController@store')->name('kasus.store');
+    // Route::get('{kasus}', 'KasusController@show')->name('kasus.show');                  
+    // Route::get('{kasus}/edit', 'KasusController@edit')->name('kasus.edit');
+    // Route::put('{kasus}', 'KasusController@update')->name('kasus.update');
+    // Route::delete('{kasus}', 'KasusController@destroy')->name('kasus.destroy');
+});
+// Route::get('histori-diagnosa', 'HistoriDiagnosaController@index')->name('histori-diagnosa');
+// Route::get('histori-diagnosa/{id}', 'HistoriDiagnosaController@detail')->name('histori-diagnosa.detail');

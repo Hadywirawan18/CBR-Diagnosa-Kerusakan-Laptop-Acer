@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DetailKasus;
 use App\Fitur;
+use App\Kasus;
 use Illuminate\Http\Request;
 
 class PerhitunganController extends Controller
@@ -16,7 +17,7 @@ class PerhitunganController extends Controller
     public function index()
     {
         $fitur = Fitur::all();
-        return view("perhitungan.index", [
+        return view("user.tambah-kasus", [
             'fitur' => $fitur
         ]);
     }
@@ -40,7 +41,7 @@ class PerhitunganController extends Controller
     public function store(Request $request)
     {
         //Perhitungan Nearest Neihgbour
-        $fitur = $request->input('fitur');
+        $fitur = $request->input('checks');
         //menampung tiap kasus dan fitur yang ada
         $kasus_ids = [];
         $kasuses = [];
@@ -59,7 +60,7 @@ class PerhitunganController extends Controller
         //perhitungan masing-masing fitur
         $total_bobot = 0;
         $total_bobot_terpilih = 0;
-        $list_hasil_perhitungan = [];
+        $hasilAkhir = [];
 
         foreach ($kasuses as $kasus) {
             foreach ($kasus as $dk) {
@@ -70,13 +71,17 @@ class PerhitunganController extends Controller
                 }
             }
             $hasil_perhitungan = $total_bobot_terpilih / $total_bobot * 100;
-            array_push($list_hasil_perhitungan, $hasil_perhitungan);
+            $case = Kasus::find($kasus[0]->kasus_id);
+            $result = [$case, $hasil_perhitungan];
+            array_push($hasilAkhir, $result);
             
             $total_bobot = 0;
             $total_bobot_terpilih = 0;
         }
 
-        return json_encode($list_hasil_perhitungan);
+        return view('user.hasil-perhitungan', [
+            'nilaiSimiliaritas' => $hasilAkhir,
+        ]);
     }
 
     /**
