@@ -63,17 +63,28 @@ class PerhitunganController extends Controller
         $hasilAkhir = [];
 
         foreach ($kasuses as $kasus) {
+            $total_fitur = 0;
+            $total_fitur_terpilih = 0;
             foreach ($kasus as $dk) {
                 $total_bobot += $dk->bobot;
+                $total_fitur += 1;
 
                 if (in_array($dk->fitur_id, $fitur)) {
                     $total_bobot_terpilih += $dk->bobot;
+                    $total_fitur_terpilih += 1;
                 }
             }
             $hasil_perhitungan = $total_bobot_terpilih / $total_bobot * 100;
             $case = Kasus::find($kasus[0]->kasus_id);
-            $result = [$case, $hasil_perhitungan];
-            array_push($hasilAkhir, $result);
+            $perhitungan = [
+                'fitur_dipilih' => count($fitur),
+                'total_fitur'=> $total_fitur,
+                'total_fitur_terpilih' => $total_fitur_terpilih,
+                'total_bobot' => $total_bobot,
+                'total_bobot_terpilih' => $total_bobot_terpilih,
+                'similiaritas' => round($hasil_perhitungan, 2)
+            ];
+            array_push($hasilAkhir, [$case, $perhitungan]);
             
             $total_bobot = 0;
             $total_bobot_terpilih = 0;

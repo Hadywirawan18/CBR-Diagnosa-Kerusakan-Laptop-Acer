@@ -35,7 +35,7 @@ menu-open
             <tr>
                 <td>{{$ns[0]->id}}</td>
                 <td>{{$ns[0]->nama_kasus}}</td>
-                <td>{{$ns[1]}}</td>
+                <td>{{$ns[1]['similiaritas']}} %</td>
             </tr>
         @endforeach
     </tbody>
