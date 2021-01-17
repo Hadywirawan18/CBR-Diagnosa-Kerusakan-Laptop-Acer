@@ -23,11 +23,15 @@ menu-open
 @section('content')
 <form action="{{route('tambah-kasus.store')}}" method="POST">
     @csrf
+    <div class="row">
+        <div class="col-2">
+            <input type="text" name="tipe_laptop" class="form-control" placeholder="Masukkan tipe laptop" required>
+        </div>
+    </div>
     <table class="table table-hover" id="table_id">
         <thead>
             <tr>
-                <th>#</th>
-                <th>Kode Fitur</th>
+                <th style="width: 3%">#</th>
                 <th>Nama Fitur</th>
             </tr>
             </th>
@@ -41,15 +45,21 @@ menu-open
 <script>
     $(document).ready( function () {
       var table = $('#table_id').DataTable({
-          processing:true,
-          serverside:true,
-          ajax:"{{ route('getdata.fitur.cb') }}",
-          columns:[
-              {data:'checkbox'},
-              {data:'kode_fitur'},
-              {data:'nama_fitur'},
-            ],
-          select: true,
+        processing:true,
+        serverside:true,
+        paging: false,
+        ajax:"{{ route('getdata.fitur.cb') }}",
+        columns:[
+            {data:'id'},
+            {data:'nama_fitur'},
+        ],
+        columnDefs: [{
+            targets: [0],
+            render: function ( data, type, row, meta ) {
+                return type === 'display' ? '<input style="width: 25px" class="form-control" type="checkbox" name="checks[]" value="'+data+'"/> ' : null;
+            }
+        }],
+        select: true,
       });
 
   });

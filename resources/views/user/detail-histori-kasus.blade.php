@@ -151,7 +151,10 @@ menu-open
 @section('script')
 <script>
     $(document).ready( function () {
-        var table = $('#table_id').DataTable();
+        var table = $('#table_id').DataTable({
+            paging: false,
+            searching: false,
+        });
 
         $('#table_id tbody').on('click', '.btn-delete', function () {
             var url = $(this).data('remote');

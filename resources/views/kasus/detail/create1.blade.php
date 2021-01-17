@@ -54,12 +54,19 @@ active
         var table = $('#table_id').DataTable({
             processing:true,
             serverside:true,
+            paging: false,
             ajax:"{{ route('getdata.fitur.cb') }}",
             columns:[
-                {data:'checkbox', sortable:false},
+                {data:'id'},
                 {data:'nama_fitur'},
             ],
-            order: [[ 1, "asc" ]],
+            columnDefs: [{
+                "targets": [0],
+                "render": function ( data, type, row, meta ) {
+                    return type === 'display' ? '<input style="width: 25px" class="form-control" type="checkbox" name="checks[]" value="'+data+'"/> ' : null;
+                }
+            }],
+            order: [[ 0, "asc" ]],
         });
     });
 </script>

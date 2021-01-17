@@ -40,6 +40,8 @@ class PerhitunganController extends Controller
      */
     public function store(Request $request)
     {
+        $tipe_laptop = $request->get('tipe_laptop');
+
         //Perhitungan Nearest Neihgbour
         $fitur = $request->input('checks');
         //menampung tiap kasus dan fitur yang ada
@@ -90,8 +92,11 @@ class PerhitunganController extends Controller
             $total_bobot_terpilih = 0;
         }
 
+        // $soerted = sort($hasilAkhir[]);
+
         return view('user.hasil-perhitungan', [
             'nilaiSimiliaritas' => $hasilAkhir,
+            // 'solution' => 
         ]);
     }
 
