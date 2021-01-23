@@ -30,18 +30,21 @@ menu-open
         </tr>
     </thead>
     <tbody>
-        @foreach ($nilaiSimiliaritas as $ns)
-            <tr>
-                <td>{{$ns[0]->id}}</td>
-                <td>{{$ns[0]->nama_kasus}}</td>
-                <td>{{$ns[1]['similiaritas']}} %</td>
-            </tr>
+        @foreach ($result as $res)
+        <tr>
+            <td>{{$res['case_id']}}</td>
+            <td>{{$res['case_name']}}</td>
+            <td>{{$res['similiaritas']}} %</td>
+        </tr>
         @endforeach
     </tbody>
 </table>
 <div class="row">
     <div class="col">
-        <button id="btn-solution" type="button" class="btn btn-primary btn-md btn-solution float-right">Lihat Solusi</button>
+        <button id="btn-solution" type="button" class="btn btn-primary btn-md btn-solution float-right">Lihat
+            Solusi</button>
+        <button id="btn-calc" type="button" class="btn btn-secondary btn-md mr-2 btn-solution float-right">Lihat
+            Perhitungan</button>
     </div>
 </div>
 @endsection
@@ -58,27 +61,82 @@ menu-open
                 </button>
             </div>
             <div class="modal-body" id="modal-body">
-                
+                <label for="">Nama Kasus</label>
+                <input type="text" class="form-control" value="{{$solution['case_name']}}" disabled>
+                <label for="" class="mt-2">Solusi</label>
+                <textarea name="" id="" cols="30" rows="7" class="form-control"
+                    disabled>{{$solution['case_solution']}}</textarea>
             </div>
             <div class="modal-footer">
-                
             </div>
         </div>
     </div>
 </div>
+
+
+<div class="modal fade bd-example-modal-lg" id="modal-calc" style="width: 1000px; margin: auto;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Perhitungan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <table class="table table-hover" id="table_calc_id">
+                    <thead>
+                        <tr>
+                            <th>Nomor Kasus</th>
+                            <th>Fitur Terpilih</th>
+                            <th>Fitur Cocok</th>
+                            <th>Bobot Cocok</th>
+                            <th>Total Bobot</th>
+                            <th>Fitur Kasus</th>
+                            <th>Perhitungan</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($result as $res)
+                        <tr>
+                            <td>{{$res['case_id']}}</td>
+                            <td>{{$res['fitur_dipilih']}}</td>
+                            <td>{{$res['total_fitur_terpilih']}}</td>
+                            <td>{{$res['total_bobot_terpilih']}}</td>
+                            <td>{{$res['total_bobot']}}</td>
+                            <td>{{$res['total_fitur']}}</td>
+                            <td>{{$res['total_bobot_terpilih']}} / {{$res['total_bobot']}} = {{$res['similiaritas']}}
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @section('script')
 <script>
-  $(document).ready( function () {
+    $(document).ready( function () {
       var table = $('#table_id').DataTable({
+        dom: 'rti',
+        order: [[ 2, 'desc' ]],
+      });
+
+      var tableCalc = $('#table_calc_id').DataTable({
         dom: 'rti',
         order: [[ 2, 'desc' ]],
       });
 
       $('#btn-solution').click(function () {
         $('#modal-solution').modal('show');
-      })
+      });
+      $('#btn-calc').click(function () {
+        $('#modal-calc').modal('show');
+      });
   });
 </script>
 @endsection

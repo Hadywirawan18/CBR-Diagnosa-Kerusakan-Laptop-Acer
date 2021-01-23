@@ -43,7 +43,7 @@ active
                         <td>{{$loop->iteration}}</td>
                         <td>{{$fitur->nama_fitur}}</td>
                         <td>
-                            <select name="bobots[]" class="form-control" require>
+                            <select name="bobots[]" class="form-control" required>
                                 <option value="">Pilih</option>
                                 <option value="5">Sangat Tinggi</option>
                                 <option value="4">Tinggi</option>
