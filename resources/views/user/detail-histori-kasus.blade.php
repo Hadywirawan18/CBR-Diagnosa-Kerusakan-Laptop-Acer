@@ -44,6 +44,12 @@ menu-open
         <table class="table" style="width:100%">
             <tbody>
                 <tr>
+                    <td><strong>Nomor Kasus</strong></td>
+                    <td>
+                        <input type="text" class="form-control" value="{{$kasus->kasus_id}}" disabled>
+                    </td>
+                </tr>
+                <tr>
                     <td><strong>Tipe Laptop</strong></td>
                     <td>
                         <input type="text" class="form-control" value="{{$kasus->tipe_laptop}}" disabled>
