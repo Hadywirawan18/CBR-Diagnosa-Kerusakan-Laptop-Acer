@@ -76,10 +76,11 @@ class PerhitunganController extends Controller
                     $total_fitur_terpilih += 1;
                 }
             }
-            $hasil_perhitungan = $total_bobot_terpilih / $total_bobot * 100;
+            $hasil_perhitungan = $total_bobot_terpilih / $total_bobot;
             $case = Kasus::find($kasus[0]->kasus_id);
             $perhitungan = [
-                'case_id' => $case->id,
+                'case_id' => $case->id, 
+                'kasus_id' => $case->kasus_id,
                 'case_name' => $case->nama_kasus,
                 'case_solution' => $case->solusi,
                 'fitur_dipilih' => count($fitur),
@@ -98,7 +99,7 @@ class PerhitunganController extends Controller
         }
 
         krsort($hasilAkhir);
-        return view('user.hasil-perhitungan', ['result' => $hasilAkhir, 'solution'=>reset($hasilAkhir)]);
+        return view('user.hasil-perhitungan', ['result' => $hasilAkhir, 'solution'=>reset($hasilAkhir), 'fiturs'=> json_encode($fitur)]);
     }
 
     /**

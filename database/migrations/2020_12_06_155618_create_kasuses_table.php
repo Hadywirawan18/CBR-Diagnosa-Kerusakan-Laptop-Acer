@@ -15,6 +15,7 @@ class CreateKasusesTable extends Migration
     {
         Schema::create('kasus', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('kasus_id');
             $table->string('tipe_laptop');
             $table->string('nama_kasus');
             $table->text('solusi');

@@ -78,6 +78,8 @@ Route::group(['prefix' => 'user'], function () {
     // Route::get('{kasus}/edit', 'KasusController@edit')->name('kasus.edit');
     // Route::put('{kasus}', 'KasusController@update')->name('kasus.update');
     // Route::delete('{kasus}', 'KasusController@destroy')->name('kasus.destroy');
+
+    Route::post('/revisi', 'RevisiController@create')->name('user.revisi');
 });
 // Route::get('histori-diagnosa', 'HistoriDiagnosaController@index')->name('histori-diagnosa');
 // Route::get('histori-diagnosa/{id}', 'HistoriDiagnosaController@detail')->name('histori-diagnosa.detail');

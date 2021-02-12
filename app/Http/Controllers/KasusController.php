@@ -24,7 +24,15 @@ class KasusController extends Controller
     // fungsi ini mengembalikan halaman untuk membuat kasus 
     public function create()
     {
-        return view('kasus.create');
+       
+        $lastKasus = Kasus::orderBy('created_at','DESC')->first();
+        if (isset($lastKasus)) {
+            $newKodeKasus = str_pad((string) $lastKasus-> id +1, 4, "0", STR_PAD_LEFT);
+            $newKodeKasus = "K$newKodeKasus";
+        }else {
+            $newKodeKasus = "K0001";
+        }
+        return view('kasus.create', ['newKodeKasus'=>$newKodeKasus]);
     }
 
     // fungsi ini untuk menangkap request yang dikirim dari halaman create kasus dan disimpan pada database

@@ -41,10 +41,11 @@ active
         <table class="table table-striped table-bordered table-hover" style="width:100%" id="table_id">
             <thead>
                 <tr>
-                    <th style="width: 5%">Tipe Laptop</th>
-                    <th style="width: 26%">Nama Kasus</th>
-                    <th style="width: 50%">Solusi</th>
-                    <th style="width: 20%">Action</th>
+                    <th style="width: 10%">Nomor Kasus</th>
+                    <th style="width: 10%">Tipe Laptop</th>
+                    <th style="width: 20%">Nama Kasus</th>
+                    <th style="width: 40%">Solusi</th>
+                    <th style="width: 30%">Action</th>
                 </tr>
             </thead>
         </table>
@@ -85,6 +86,7 @@ active
             serverside:true,
             ajax:"{{ route('getdata.kasus') }}",
             columns:[
+                {data:'kasus_id'},
                 {data:'tipe_laptop'},
                 {data:'nama_kasus'},
                 {data:'solusi'},

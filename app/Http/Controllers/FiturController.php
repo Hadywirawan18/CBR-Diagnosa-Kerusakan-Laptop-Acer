@@ -22,7 +22,15 @@ class FiturController extends Controller
     // fungsi ini mengembalikan halaman untuk membuat fitur 
     public function create()
     {
-        return view('fitur.create');
+        $lastFitur = Fitur::orderBy('created_at','DESC')->first();
+        if (isset($lastFitur)) {
+            $newKodeFitur = str_pad((string) $lastFitur-> id +1, 4, "0", STR_PAD_LEFT);
+            $newKodeFitur = "F$newKodeFitur";
+        }else {
+            $newKodeFitur = "F0001";
+        }
+        return view('fitur.create', ['newKodeFitur'=>$newKodeFitur]);
+
     }
 
     // fungsi ini untuk menangkap request yang dikirim dari halaman create fitur dan disimpan pada database

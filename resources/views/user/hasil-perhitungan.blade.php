@@ -32,16 +32,23 @@ menu-open
     <tbody>
         @foreach ($result as $res)
         <tr>
-            <td>{{$res['case_id']}}</td>
+            <td>{{$res['kasus_id']}}</td>
             <td>{{$res['case_name']}}</td>
-            <td>{{$res['similiaritas']}} %</td>
+            <td>{{$res['similiaritas']}}</td>
         </tr>
         @endforeach
     </tbody>
 </table>
 <div class="row">
     <div class="col">
-        <button id="btn-solution" type="button" class="btn btn-primary btn-md btn-solution float-right">Lihat
+       @if ((int)$solution['similiaritas'] < 0.5)    
+       <form action="{{route('user.revisi')}}" class="form-inline float-right" method="POST">
+           @csrf
+           <input type="hidden" name="fiturs" value="{{ $fiturs }}">
+           <button id="btn-revisi" type="submit" class="btn btn-warning btn-md">Revisi</button>
+       </form>
+       @endif
+        <button id="btn-solution" type="button" class="btn btn-primary btn-md mr-2 btn-solution float-right" {{(int)$solution['similiaritas'] < 0.5 ? 'disabled':''}}>Lihat
             Solusi</button>
         <button id="btn-calc" type="button" class="btn btn-secondary btn-md mr-2 btn-solution float-right">Lihat
             Perhitungan</button>
@@ -99,7 +106,7 @@ menu-open
                     <tbody>
                         @foreach ($result as $res)
                         <tr>
-                            <td>{{$res['case_id']}}</td>
+                            <td>{{$res['kasus_id']}}</td>
                             <td>{{$res['fitur_dipilih']}}</td>
                             <td>{{$res['total_fitur_terpilih']}}</td>
                             <td>{{$res['total_bobot_terpilih']}}</td>
