@@ -41,14 +41,14 @@ menu-open
 </table>
 <div class="row">
     <div class="col">
-       @if ((int)$solution['similiaritas'] < 0.5)    
+       @if ((float)$solution['similiaritas'] < 0.5)    
        <form action="{{route('user.revisi')}}" class="form-inline float-right" method="POST">
            @csrf
            <input type="hidden" name="fiturs" value="{{ $fiturs }}">
            <button id="btn-revisi" type="submit" class="btn btn-warning btn-md">Revisi</button>
        </form>
        @endif
-        <button id="btn-solution" type="button" class="btn btn-primary btn-md mr-2 btn-solution float-right" {{(int)$solution['similiaritas'] < 0.5 ? 'disabled':''}}>Lihat
+        <button id="btn-solution" type="button" class="btn btn-primary btn-md mr-2 btn-solution float-right" {{(float)$solution['similiaritas'] < 0.5 ? 'disabled':''}}>Lihat
             Solusi</button>
         <button id="btn-calc" type="button" class="btn btn-secondary btn-md mr-2 btn-solution float-right">Lihat
             Perhitungan</button>

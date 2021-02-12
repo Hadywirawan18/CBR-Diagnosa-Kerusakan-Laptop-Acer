@@ -17,6 +17,7 @@ menu-open
   <thead>
     <tr>
       <th scope="col">#</th>
+      <th scope="col">Nomor Kasus</th>
       <th scope="col">Tipe Laptop</th>
       <th scope="col">Nama Kasus</th>
       <th scope="col">Solusi</th>
@@ -35,6 +36,7 @@ menu-open
           ajax:"{{ route('getdata.historikasus') }}",
           columns:[
               {data:null},
+              {data:'kasus_id'},
               {data:'tipe_laptop'},
               {data:'nama_kasus'},
               {data:'solusi'},
