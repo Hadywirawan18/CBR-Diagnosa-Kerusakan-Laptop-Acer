@@ -86,8 +86,10 @@ class KasusController extends Controller
     public function edit($id)
     {
         $kasus = Kasus::findOrFail($id);
+        $detailKasus = DetailKasus::where('kasus_id', $kasus->id)->get();
         return view('kasus.edit', [
-            'kasus' => $kasus
+            'kasus' => $kasus,
+            'detail_kasus' => $detailKasus,
         ]);
     }
 

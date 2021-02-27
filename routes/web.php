@@ -81,6 +81,8 @@ Route::group(['prefix' => 'user'], function () {
 
     Route::post('/revisi', 'RevisiController@create')->name('user.revisi');
     Route::post('/revisi/store', 'RevisiController@store')->name('user.revisi.store');
+    Route::post('/retain', 'RevisiController@retain')->name('user.retain');
+    Route::post('/retain/store', 'RevisiController@retain_store')->name('user.retain.store');
 });
 // Route::get('histori-diagnosa', 'HistoriDiagnosaController@index')->name('histori-diagnosa');
 // Route::get('histori-diagnosa/{id}', 'HistoriDiagnosaController@detail')->name('histori-diagnosa.detail');

@@ -41,20 +41,28 @@ menu-open
 </table>
 <div class="row">
     <div class="col">
-        @if ((float)$solution['similiaritas'] < 0.5) <form action="{{route('user.revisi')}}"
-            class="form-inline float-right" method="POST">
-            @csrf
-            <input type="hidden" name="tipe_laptop" value="{{ $tipe_laptop }}">
-            <input type="hidden" name="nama_kasus" value="{{ $nama_kasus }}">
-            <input type="hidden" name="fiturs" value="{{ $fiturs }}">
-            <input type="hidden" name="solusi" value="{{ $solution['case_solution'] }}">
-            <input type="hidden" name="similiaritas" value="{{ $solution['similiaritas'] }}">
-            <button id="btn-revisi" type="submit" class="btn btn-warning btn-md">Revisi</button>
-            </form>
+            @if ((float)$solution['similiaritas'] < 0.5) 
+                <form action="{{route('user.revisi')}}" class="form-inline float-right" method="POST">
+                    @csrf
+                    <input type="hidden" name="tipe_laptop" value="{{ $tipe_laptop }}">
+                    <input type="hidden" name="nama_kasus" value="{{ $nama_kasus }}">
+                    <input type="hidden" name="fiturs" value="{{ $fiturs }}">
+                    <input type="hidden" name="solusi" value="{{ $solution['case_solution'] }}">
+                    <input type="hidden" name="similiaritas" value="{{ $solution['similiaritas'] }}">
+                    <button id="btn-revisi" type="submit" class="btn btn-warning btn-md">Revisi</button>
+                </form>
+            @else
+                <form action="{{route('user.retain')}}" class="form-inline float-right" method="POST">
+                    @csrf
+                    <input type="hidden" name="tipe_laptop" value="{{ $tipe_laptop }}">
+                    <input type="hidden" name="nama_kasus" value="{{ $nama_kasus }}">
+                    <input type="hidden" name="fiturs" value="{{ $fiturs }}">
+                    <input type="hidden" name="solusi" value="{{ $solution['case_solution'] }}">
+                    <button id="btn-revisi" type="submit" class="btn btn-success btn-md">Simpan</button>
+                </form>
             @endif
             <button id="btn-solution" type="button" class="btn btn-primary btn-md mr-2 btn-solution float-right"
-                {{(float)$solution['similiaritas'] < 0.5 ? 'disabled':''}}>Lihat
-                Solusi</button>
+                {{(float)$solution['similiaritas'] < 0.5 ? 'disabled':''}}>Lihat Solusi</button>
             <button id="btn-calc" type="button" class="btn btn-secondary btn-md mr-2 btn-solution float-right">Lihat
                 Perhitungan</button>
     </div>

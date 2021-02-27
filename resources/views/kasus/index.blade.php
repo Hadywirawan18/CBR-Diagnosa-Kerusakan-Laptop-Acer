@@ -96,6 +96,9 @@ active
                 {data:'revise_msg'},
                 {data:'aksi', sortable:false},
             ],
+            order:[
+                [4, 'desc']
+            ],
         });
 
         $('#table_id tbody').on('click', 'button', function () {

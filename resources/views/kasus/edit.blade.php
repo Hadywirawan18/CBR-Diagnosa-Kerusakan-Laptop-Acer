@@ -5,7 +5,7 @@ Kasus
 @endsection
 
 @section('title-card')
-Edit Kasus
+Lihat Kasus
 @endsection
 
 @section('menu-kasus')
@@ -28,45 +28,46 @@ active
         </div>
         @endif
 
-        <form action="{{ route('kasus.update', ['kasus' => $kasus->id]) }}" method="POST">
-            @csrf
-            @method('PUT')
-            <div class="form-group">
-                <label for="">Tipe Laptop</label>
-                <input name="tipe_laptop" type="text" class=" form-control {{$errors->first('tipe_laptop') ? 'is-invalid':''}}"
-                    value="{{$kasus->tipe_laptop}}" maxlength="10" required>
-                @error('tipe_laptop')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-                @enderror
-            </div>
+        <div class="form-group">
+            <label for="">Tipe Laptop</label>
+            <input name="tipe_laptop" type="text"
+                class=" form-control {{$errors->first('tipe_laptop') ? 'is-invalid':''}}"
+                value="{{$kasus->tipe_laptop}}" maxlength="10" disabled>
+        </div>
 
-            <div class="form-group">
-                <label for="">Nama Kasus</label>
-                <input name="nama_kasus" type="text" class=" form-control {{$errors->first('nama_kasus') ? 'is-invalid':''}}"
-                    value="{{$kasus->nama_kasus}}" maxlength="190" required>
-                @error('nama_kasus')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-                @enderror
-            </div>
+        <div class="form-group">
+            <label for="">Nama Kasus</label>
+            <input name="nama_kasus" type="text"
+                class=" form-control {{$errors->first('nama_kasus') ? 'is-invalid':''}}" value="{{$kasus->nama_kasus}}"
+                maxlength="190" disabled>
+        </div>
 
-            <div class="form-group">
-                <label for="">Solusi</label>
-                <textarea name="solusi" id="" cols="30" rows="10" class=" form-control {{$errors->first('solusi') ? 'is-invalid':''}}"
-                    require>{{$kasus->solusi}}</textarea>
-                @error('solusi')
-                <div class="invalid-feedback">
-                    {{$message}}
-                </div>
-                @enderror
-            </div>
-            
-            <button type="submit" class="btn btn-primary btn-md float-right">Simpan</button>
-            <a href="{{ route('kasus.index') }}" class="btn btn-secondary btn-md float-right mr-2">Kembali</a>
-        </form>
+        <div class="form-group">
+            <label for="">Solusi</label>
+            <textarea name="solusi" id="" cols="30" rows="10"
+                class=" form-control {{$errors->first('solusi') ? 'is-invalid':''}}"
+                disabled>{{$kasus->solusi}}</textarea>
+        </div>
+    </div>
+</div>
+<div class="row mt-3">
+    <div class="col-12 table-responsive">
+        <table class="table table-striped table-bordered table-hover" style="width:100%" id="table_id">
+            <thead>
+                <tr>
+                    <th style="width: 70%">Fitur</th>
+                    <th style="width: 10%">Bobot</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($detail_kasus as $dk)
+                <tr>
+                    <td>{{$dk->Fitur()->nama_fitur}}</td>
+                    <td>{{$dk->Bobot()}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection
