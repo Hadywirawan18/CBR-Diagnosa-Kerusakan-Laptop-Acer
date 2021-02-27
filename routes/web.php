@@ -63,9 +63,9 @@ Route::group(['prefix' => 'kasus/detail'], function () {
 });
 
 
-Route::get('cbruser', function () {
-    return view('layouts.user');
-});
+// Route::get('cbruser', function () {
+//     return view('layouts.user');
+// });
 
 // app histori diagnosa
 Route::group(['prefix' => 'user'], function () {
@@ -80,6 +80,7 @@ Route::group(['prefix' => 'user'], function () {
     // Route::delete('{kasus}', 'KasusController@destroy')->name('kasus.destroy');
 
     Route::post('/revisi', 'RevisiController@create')->name('user.revisi');
+    Route::post('/revisi/store', 'RevisiController@store')->name('user.revisi.store');
 });
 // Route::get('histori-diagnosa', 'HistoriDiagnosaController@index')->name('histori-diagnosa');
 // Route::get('histori-diagnosa/{id}', 'HistoriDiagnosaController@detail')->name('histori-diagnosa.detail');

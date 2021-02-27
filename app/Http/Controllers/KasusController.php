@@ -95,23 +95,28 @@ class KasusController extends Controller
     // dg membawa id kasus dan request (data kasus yg diinputkan baru oleh user)
     public function update(Request $request, $id)
     {
-        $request->validate(
-            [
-                'tipe_laptop' => "required|max:10",
-                'nama_kasus' => "required|max:191",
-                'solusi' => "required",
-            ],
-            [
-                'tipe_laptop.required' => 'Tipe Laptop kasus harus diisi',
-                'nama_kasus.required' => 'Nama kasus harus diisi',
-                'nama_kasus.max' => 'Nama kasus tidak boleh melebihi 191 karakter',
-                'solusi.required' => 'Solusi harus diisi',
-            ]
-        );
-
+        // $request->validate(
+        //     [
+        //         'tipe_laptop' => "required|max:10",
+        //         'nama_kasus' => "required|max:191",
+        //         'solusi' => "required",
+        //     ],
+        //     [
+        //         'tipe_laptop.required' => 'Tipe Laptop kasus harus diisi',
+        //         'nama_kasus.required' => 'Nama kasus harus diisi',
+        //         'nama_kasus.max' => 'Nama kasus tidak boleh melebihi 191 karakter',
+        //         'solusi.required' => 'Solusi harus diisi',
+        //     ]
+        // );
+        
         $kasus = Kasus::findOrFail($id);
         $kasus->update($request->all());
-        return redirect()->route('kasus.edit', ['kasus' => $id])->with('status', "Kasus \"$kasus->tipe_laptop\" Dengan Diagnosa \"$kasus->nama_kasus\" berhasil diedit");
+
+        if ($request->get('revise_status') == '') {
+            $kasus->revise_msg = '';
+            $kasus->save();
+        }
+        return redirect()->route('kasus.show', ['kasus' => $id])->with('status', "Kasus \"$kasus->tipe_laptop\" Dengan Diagnosa \"$kasus->nama_kasus\" berhasil diedit");
     }
 
     // fungsi ini digunakan untuk menghapus data pada database berdasarkan id pada parameter

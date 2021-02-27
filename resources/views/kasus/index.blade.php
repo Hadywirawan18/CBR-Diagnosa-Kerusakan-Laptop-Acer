@@ -41,11 +41,13 @@ active
         <table class="table table-striped table-bordered table-hover" style="width:100%" id="table_id">
             <thead>
                 <tr>
-                    <th style="width: 10%">Nomor Kasus</th>
-                    <th style="width: 10%">Tipe Laptop</th>
-                    <th style="width: 20%">Nama Kasus</th>
-                    <th style="width: 40%">Solusi</th>
-                    <th style="width: 30%">Action</th>
+                    <th >Nomor Kasus</th>
+                    <th >Tipe Laptop</th>
+                    <th >Nama Kasus</th>
+                    <th >Solusi</th>
+                    <th >Status</th>
+                    <th >Revise Msg</th>
+                    <th >Action</th>
                 </tr>
             </thead>
         </table>
@@ -90,6 +92,8 @@ active
                 {data:'tipe_laptop'},
                 {data:'nama_kasus'},
                 {data:'solusi'},
+                {data:'revise_status'},
+                {data:'revise_msg'},
                 {data:'aksi', sortable:false},
             ],
         });

@@ -19,6 +19,8 @@ class CreateKasusesTable extends Migration
             $table->string('tipe_laptop');
             $table->string('nama_kasus');
             $table->text('solusi');
+            $table->text('revise_status')->nullable();
+            $table->text('revise_msg')->nullable();
             $table->timestamps();
         });
     }

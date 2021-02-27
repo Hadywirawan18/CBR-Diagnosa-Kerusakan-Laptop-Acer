@@ -10,7 +10,7 @@ class HistoriDiagnosaController extends Controller
 {
     public function index()
     {
-        return view("user.histori-diagnosa", compact("cases"));
+        return view("user.histori-diagnosa");
     }
 
     public function show($id)

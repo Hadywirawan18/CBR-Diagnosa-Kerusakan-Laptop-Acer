@@ -24,9 +24,9 @@ menu-open
 <table class="table table-hover" id="table_id">
     <thead>
         <tr>
-            <th>Nomor Kasus</th>
-            <th>Kerusakan</th>
-            <th>Nilai Similiaritas</th>
+            <th style="width: 20%">Nomor Kasus</th>
+            <th style="width: 60%">Kerusakan</th>
+            <th style="width: 20%">Nilai Similiaritas</th>
         </tr>
     </thead>
     <tbody>
@@ -41,17 +41,22 @@ menu-open
 </table>
 <div class="row">
     <div class="col">
-       @if ((float)$solution['similiaritas'] < 0.5)    
-       <form action="{{route('user.revisi')}}" class="form-inline float-right" method="POST">
-           @csrf
-           <input type="hidden" name="fiturs" value="{{ $fiturs }}">
-           <button id="btn-revisi" type="submit" class="btn btn-warning btn-md">Revisi</button>
-       </form>
-       @endif
-        <button id="btn-solution" type="button" class="btn btn-primary btn-md mr-2 btn-solution float-right" {{(float)$solution['similiaritas'] < 0.5 ? 'disabled':''}}>Lihat
-            Solusi</button>
-        <button id="btn-calc" type="button" class="btn btn-secondary btn-md mr-2 btn-solution float-right">Lihat
-            Perhitungan</button>
+        @if ((float)$solution['similiaritas'] < 0.5) <form action="{{route('user.revisi')}}"
+            class="form-inline float-right" method="POST">
+            @csrf
+            <input type="hidden" name="tipe_laptop" value="{{ $tipe_laptop }}">
+            <input type="hidden" name="nama_kasus" value="{{ $nama_kasus }}">
+            <input type="hidden" name="fiturs" value="{{ $fiturs }}">
+            <input type="hidden" name="solusi" value="{{ $solution['case_solution'] }}">
+            <input type="hidden" name="similiaritas" value="{{ $solution['similiaritas'] }}">
+            <button id="btn-revisi" type="submit" class="btn btn-warning btn-md">Revisi</button>
+            </form>
+            @endif
+            <button id="btn-solution" type="button" class="btn btn-primary btn-md mr-2 btn-solution float-right"
+                {{(float)$solution['similiaritas'] < 0.5 ? 'disabled':''}}>Lihat
+                Solusi</button>
+            <button id="btn-calc" type="button" class="btn btn-secondary btn-md mr-2 btn-solution float-right">Lihat
+                Perhitungan</button>
     </div>
 </div>
 @endsection
@@ -81,7 +86,8 @@ menu-open
 </div>
 
 
-<div class="modal fade bd-example-modal-lg" id="modal-calc" style="width: 1000px; margin: auto;" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade bd-example-modal-lg" id="modal-calc" style="width: 1000px; margin: auto;" tabindex="-1"
+    role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">

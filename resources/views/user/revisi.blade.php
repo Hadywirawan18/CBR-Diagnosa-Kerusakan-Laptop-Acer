@@ -33,7 +33,7 @@ menu-open
         </div>
         @endif
 
-        <form action="{{ route('kasus.detail.store2') }}" method="POST">
+        <form action="{{ route('user.revisi.store') }}" method="POST">
             @csrf
             <table class="table table-striped table-bordered table-hover" style="width:100%" id="table_id">
                 <thead>
@@ -45,20 +45,15 @@ menu-open
                     @foreach ($fiturs as $fitur)
                     <tr>
                         <td>{{$loop->iteration}}</td>
-                        <td>{{$fitur->nama_fitur}}</td>
+                        <td>{{$fitur[0]->nama_fitur}}</td>
                         <td>
-                            <select name="bobots[]" class="form-control" required>
-                                <option value="">Pilih</option>
-                                <option value="5">Sangat Tinggi</option>
-                                <option value="4">Tinggi</option>
-                                <option value="3">Sedang</option>
-                                <option value="2">Rendah</option>
-                                <option value="1">Sangat Rendah</option>
-                            </select>
+                            <input type="text" readonly class="form-control" value="{{$fitur[1]}}">
+                            <input type="hidden" readonly name="bobots[]" class="form-control" value="{{$fitur[2]}}">
                         </td>
-                        <input type="hidden" name="fiturs[]" value="{{$fitur->id}}">
+                        <input type="hidden" name="fiturs[]" value="{{$fitur[0]->id}}">
                     </tr>
                     @endforeach
+                    <input type="hidden" name="kasus_id" value="{{$kasus_id}}">
                 </thead>
             </table>
             <button type="submit" class="btn btn-primary btn-md float-right">Simpan</button>

@@ -33,9 +33,9 @@ class DataTableController extends Controller
     {
         return datatables()->of(Kasus::all())
             ->addColumn('aksi', function ($kasus) {
-                return '<a href="' . route('kasus.show', ['kasus' => $kasus->id]) . '" class="btn btn-success btn-sm mr-2">Revise</a>'
-                    . '<a href="' . route('kasus.edit', ['kasus' => $kasus->id]) . '" class="btn btn-warning btn-sm mr-2">Edit</a>'
-                    . '<button type="button" class="btn btn-danger btn-sm btn-delete" data-remote="' . route('kasus.destroy', ['kasus' => $kasus->id]) . '">Delete</button>';
+                return '<a href="' . route('kasus.show', ['kasus' => $kasus->id]) . '" class="shadow btn btn-block btn-warning btn-sm mr-2">Revise</a>'
+                    . '<a href="' . route('kasus.edit', ['kasus' => $kasus->id]) . '" class="shadow btn btn-block btn-success btn-sm mr-2">Lihat Kasus</a>'
+                    . '<button type="button" class="shadow btn btn-block btn-danger btn-sm btn-delete" data-remote="' . route('kasus.destroy', ['kasus' => $kasus->id]) . '">Delete</button>';
             })
             ->rawColumns(['aksi'])
             ->toJson();
@@ -63,7 +63,7 @@ class DataTableController extends Controller
 
     public function getHistoriKasus()
     {
-        return datatables()->of(Kasus::all())
+        return datatables()->of(Kasus::where('revise_status', null)->get())
             ->addColumn('aksi', function ($detail) {
                 return '<a href="' . route('histori-diagnosa.show', ['id' => $detail->id]) . '" class="btn btn-info btn-sm text-white shadow">Detail</a>';
             })

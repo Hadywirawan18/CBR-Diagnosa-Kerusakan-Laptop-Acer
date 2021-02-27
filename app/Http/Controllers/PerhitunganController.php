@@ -52,10 +52,13 @@ class PerhitunganController extends Controller
             $detailKasus = DetailKasus::where('fitur_id', $f)->get();
             foreach ($detailKasus as $d) {
                 if (!(in_array($d->kasus_id, $kasus_ids))) {
-                    array_push($kasus_ids, $d->kasus_id);
+                    $kasus = Kasus::find($d->kasus_id);
+                    if ($kasus->revise_status != 'unrevised') {
+                        array_push($kasus_ids, $d->kasus_id);
 
-                    $dk = DetailKasus::where('kasus_id', $d->kasus_id)->get();
-                    array_push($kasuses, $dk);
+                        $dk = DetailKasus::where('kasus_id', $d->kasus_id)->get();
+                        array_push($kasuses, $dk);
+                    }
                 }
             }
         }
@@ -63,6 +66,8 @@ class PerhitunganController extends Controller
         $total_bobot = 0;
         $total_bobot_terpilih = 0;
         $hasilAkhir = [];
+
+        $fiturWthBobot = [];
 
         foreach ($kasuses as $kasus) {
             $total_fitur = 0;
@@ -72,6 +77,7 @@ class PerhitunganController extends Controller
                 $total_fitur += 1;
 
                 if (in_array($dk->fitur_id, $fitur)) {
+                    array_push($fiturWthBobot, [$dk->fitur_id, $dk->bobot]);
                     $total_bobot_terpilih += $dk->bobot;
                     $total_fitur_terpilih += 1;
                 }
@@ -79,12 +85,12 @@ class PerhitunganController extends Controller
             $hasil_perhitungan = $total_bobot_terpilih / $total_bobot;
             $case = Kasus::find($kasus[0]->kasus_id);
             $perhitungan = [
-                'case_id' => $case->id, 
+                'case_id' => $case->id,
                 'kasus_id' => $case->kasus_id,
                 'case_name' => $case->nama_kasus,
                 'case_solution' => $case->solusi,
                 'fitur_dipilih' => count($fitur),
-                'total_fitur'=> $total_fitur,
+                'total_fitur' => $total_fitur,
                 'total_fitur_terpilih' => $total_fitur_terpilih,
                 'total_bobot' => $total_bobot,
                 'total_bobot_terpilih' => $total_bobot_terpilih,
@@ -93,13 +99,19 @@ class PerhitunganController extends Controller
             // array_push($hasilAkhir, $perhitungan);
             $key = $perhitungan['similiaritas'];
             $hasilAkhir[sprintf('%02.2f', $key)] = $perhitungan;
-            
+
             $total_bobot = 0;
             $total_bobot_terpilih = 0;
         }
 
         krsort($hasilAkhir);
-        return view('user.hasil-perhitungan', ['result' => $hasilAkhir, 'solution'=>reset($hasilAkhir), 'fiturs'=> json_encode($fitur)]);
+        return view('user.hasil-perhitungan', [
+            'result' => $hasilAkhir,
+            'solution' => reset($hasilAkhir),
+            'fiturs' => json_encode($fiturWthBobot),
+            'tipe_laptop' => $tipe_laptop,
+            'nama_kasus' => reset($hasilAkhir)['case_name']
+        ]);
     }
 
     /**
