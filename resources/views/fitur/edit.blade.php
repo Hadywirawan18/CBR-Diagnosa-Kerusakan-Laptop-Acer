@@ -34,7 +34,7 @@ active
             <div class="form-group">
                 <label for="">Kode Fitur</label>
                 <input name="kode_fitur" type="text" class=" form-control {{$errors->first('kode_fitur') ? 'is-invalid':''}}"
-                    require value="{{$fitur->kode_fitur}}">
+                    require value="{{$fitur->kode_fitur}}" readonly>
                 @error('kode_fitur')
                 <div class="invalid-feedback">
                     {{$message}}
