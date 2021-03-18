@@ -72,7 +72,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <a href="#" class="brand-link">
-                <h6>Diagnosa Kerusakan Laptop Acer</h6>
+                {{-- <h6>Diagnosa Kerusakan Laptop Acer</h6> --}}
                 <span class="brand-text font-weight-light"></span>
             </a>
 
@@ -80,10 +80,12 @@
             <div class="sidebar">
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-                    <i class="fas fa-home fa-2x ml-3" style="color: white"></i>
+                    <i class="fas fa-user fa-2x ml-3" style="color: white"></i>
                     <div class="info">
                         <a href="#" class="d-block font-weight-bold">
-                            Beranda
+                            @auth
+                                {{strtoupper(Auth::user()->name)}}
+                            @endauth
                         </a>
                     </div>
                 </div>
@@ -121,7 +123,7 @@
                             </ul>
                         </li>
 
-                        <li class="nav-item has-treeview mb-2">
+                        {{-- <li class="nav-item has-treeview mb-2">
                             <a href="#" class="nav-link @yield('menu-informasi')">
                                 <i class="nav-icon far fa-check-square"></i>
                                 <p>
@@ -145,7 +147,7 @@
                                     </a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
 
                         <li class="nav-item has-treeview mb-2">
                             <a href="#" class="nav-link @yield('menu-bantuan')">

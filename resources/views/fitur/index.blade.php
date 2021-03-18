@@ -57,7 +57,7 @@ active
         var table = $('#table_id').DataTable({
             processing:true,
             serverside:true,
-            paging: false,
+            paging: false,chr
             ajax:"{{ route('getdata.fitur') }}",
             columns:[
                 {data: 'kode_fitur'},
