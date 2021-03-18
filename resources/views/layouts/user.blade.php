@@ -53,14 +53,14 @@
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        Login
+                        {{Auth::user()->name}}
                         <i class="far fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button class="dropdown-item">
-                                <i class="fas fa-sign-in-alt mr-2" style="color: grey"></i> Login
+                                <i class="fas fa-sign-out-alt mr-2" style="color: grey"></i> Keluar
                             </button>
                         </form>
                     </div>
@@ -90,14 +90,23 @@
                     </div>
                 </div>
 
+                
+
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                         data-accordion="false">
+                        <li class="nav-item">
+                            <a href="{{route('home')}}"
+                                class="nav-link @yield('home')">
+                                <i class="fas fa-home"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
                         <!-- <li class="nav-header">CBR</li> -->
-                        <li class="nav-item has-treeview mb-2 @yield('menu-diagnosa-open')")>
+                        <li class="nav-item has-treeview menu-open mb-2 @yield('menu-diagnosa-open')")>
                             <a href="#" class="nav-link @yield('menu-diagnosa')">
                                 <i class="nav-icon fas fa-laptop-medical"></i>
                                 <p>
@@ -149,7 +158,7 @@
                             </ul>
                         </li> --}}
 
-                        <li class="nav-item has-treeview mb-2">
+                        <li class="nav-item has-treeview menu-open mb-2">
                             <a href="#" class="nav-link @yield('menu-bantuan')">
                                 <i class="nav-icon far fa-question-circle"></i>
                                 <p>

@@ -29,8 +29,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('vendor/DataTables/datatables.css') }}">
 
     <link rel="stylesheet" href="{{ asset('vendor/AdminLTE/plugins/select2/css/select2.min.css') }}">
-    <link rel="stylesheet"
-        href="{{ asset('vendor/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor/AdminLTE/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
 
     @yield('head')
 </head>
@@ -53,6 +52,7 @@
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
+                        {{Auth::user()->name}}
                         <i class="far fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
@@ -95,6 +95,13 @@
                         <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
 
                         <!-- <li class="nav-header">CBR</li> -->
+                        <li class="nav-item">
+                            <a href="{{route('dashboard')}}"
+                                class="nav-link @yield('dashboard')">
+                                <i class="fas fa-home"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
                         <li class="nav-item has-treeview menu-open mb-2">
                             <a href="#" class="nav-link @yield('menu-kasus')">
                                 <i class="nav-icon fas fa-laptop-medical"></i>
@@ -149,6 +156,15 @@
                                     </a>
                                 </li>
                             </ul>
+                        </li>
+
+                        {{-- menu user --}}
+                        <li class="nav-item">
+                            <a href="{{route('users.index')}}"
+                                class="nav-link @yield('users.index')">
+                                <i class="fas fa-users"></i>
+                                <p>Kelola User</p>
+                            </a>
                         </li>
 
                     </ul>

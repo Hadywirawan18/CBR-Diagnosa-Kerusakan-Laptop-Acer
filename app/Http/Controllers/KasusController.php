@@ -24,15 +24,15 @@ class KasusController extends Controller
     // fungsi ini mengembalikan halaman untuk membuat kasus 
     public function create()
     {
-       
-        $lastKasus = Kasus::orderBy('created_at','DESC')->first();
+
+        $lastKasus = Kasus::orderBy('created_at', 'DESC')->first();
         if (isset($lastKasus)) {
-            $newKodeKasus = str_pad((string) $lastKasus-> id +1, 4, "0", STR_PAD_LEFT);
+            $newKodeKasus = str_pad((string) $lastKasus->id + 1, 4, "0", STR_PAD_LEFT);
             $newKodeKasus = "K$newKodeKasus";
-        }else {
+        } else {
             $newKodeKasus = "K0001";
         }
-        return view('kasus.create', ['newKodeKasus'=>$newKodeKasus]);
+        return view('kasus.create', ['newKodeKasus' => $newKodeKasus]);
     }
 
     // fungsi ini untuk menangkap request yang dikirim dari halaman create kasus dan disimpan pada database
@@ -63,8 +63,8 @@ class KasusController extends Controller
         // halaman tersebut dapat diakses dari controller KasusController dan KasusDetailController.
         // jika type = null maka artinya dia diakses oleh route KasusController.
         return view('kasus.detail.create1', [
-            'kasus_id'=>$kasus->id,
-            'type'=>null
+            'kasus_id' => $kasus->id,
+            'type' => null
         ]);
     }
 
@@ -77,8 +77,8 @@ class KasusController extends Controller
         $detail_kasus = DetailKasus::where('kasus_id', $id)->get();
 
         return view('kasus.view', [
-            'kasus'=>$kasus,
-            'detail_kasus'=>$detail_kasus
+            'kasus' => $kasus,
+            'detail_kasus' => $detail_kasus
         ]);
     }
 
@@ -110,7 +110,7 @@ class KasusController extends Controller
         //         'solusi.required' => 'Solusi harus diisi',
         //     ]
         // );
-        
+
         $kasus = Kasus::findOrFail($id);
         $kasus->update($request->all());
 
