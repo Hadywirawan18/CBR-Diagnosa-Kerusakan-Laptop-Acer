@@ -158,7 +158,7 @@
                             </ul>
                         </li> --}}
 
-                        <li class="nav-item has-treeview menu-open mb-2">
+                        <li class="nav-item has-treeview menu-open mb-2 @yield('menu-bantuan-open')">
                             <a href="#" class="nav-link @yield('menu-bantuan')">
                                 <i class="nav-icon far fa-question-circle"></i>
                                 <p>
@@ -168,7 +168,7 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link @yield('menu-bantuan-daftar')">
+                                    <a href="{{url("/tentang")}}" class="nav-link @yield('tentang')">
                                         <i class="nav-icon fas fa-info"></i>
                                         <p>Tentang</p>
                                     </a>
@@ -176,7 +176,7 @@
                             </ul>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link @yield('menu-bantuan-daftar')">
+                                    <a href="{{url("/penggunaan")}}" class="nav-link @yield('penggunaan')">
                                         <i class="nav-icon far fa-question-circle"></i>
                                         <p>Penggunaan</p>
                                     </a>

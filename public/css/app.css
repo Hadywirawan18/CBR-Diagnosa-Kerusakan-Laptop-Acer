@@ -142,7 +142,9 @@ body {
     line-height: 1.6;
     color: #212529;
     text-align: left;
-    background-color: #f8fafc
+    background-image: url(../img/cbr.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 [tabindex="-1"]:focus {

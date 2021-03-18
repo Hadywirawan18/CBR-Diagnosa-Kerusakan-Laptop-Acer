@@ -8,8 +8,8 @@ active
 active
 @endsection
 
-@section('menu-diagnosa-open')
-menu-open
+@section('menu-bantuan')
+active
 @endsection
 
 @section('content')

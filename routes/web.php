@@ -95,3 +95,9 @@ Route::group(['prefix' => 'user'], function () {
 // Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/tentang', function () {
+    return view("bantuan.tentang");
+});
+Route::get('/penggunaan', function () {
+    return view("bantuan.penggunaan");
+});

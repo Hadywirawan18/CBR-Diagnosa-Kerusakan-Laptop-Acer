@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
-@section('title')
-Kasus
-@endsection
+{{-- @section('title')
+Welcome
+@endsection --}}
 
 
 @section('dashboard')
