@@ -1,11 +1,11 @@
 @extends('layouts.user')
 
 @section('title')
-Kasus
+Kasus Baru
 @endsection
 
 @section('title-card')
-Detail Kasus
+Hasil Diagnosa Kasus Baru
 @endsection
 
 @section('menu-diagnosa')

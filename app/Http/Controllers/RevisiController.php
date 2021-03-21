@@ -98,13 +98,14 @@ class RevisiController extends Controller
         $tipe_laptop = $request->get('tipe_laptop');
         $nama_kasus = $request->get('nama_kasus');
         $solusi = $request->get('solusi');
+        // $rtby = $request -> Auth::user()->name;
 
         $kasus = new Kasus;
         $kasus->tipe_laptop = $tipe_laptop;
         $kasus->nama_kasus = $nama_kasus;
         $kasus->solusi = $solusi;
         $kasus->kasus_id = $newKodeKasus;
-        $kasus->revise_msg = "Retain By: Hadi";
+        $kasus->revise_msg = "Retain By: ";
         $kasus->save();
 
         $bobot = ['Sangat Rendah', 'Rendah', 'Sedang', 'Tinggi', 'Sangat Tinggi'];

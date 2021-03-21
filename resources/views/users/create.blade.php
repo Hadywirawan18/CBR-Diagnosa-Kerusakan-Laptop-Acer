@@ -11,7 +11,7 @@
     <label for="name">Nama</label>
     <input type="text" name="name" id="name" placeholder="Masukkan nama" class="form-control @error('name')
         is-invalid
-    @enderror">
+    @enderror" autocomplete="false">
     @error('name')
         <span class="invalid-feedback" role="alert">
             {{$message}}
@@ -22,7 +22,7 @@
     <label for="username">Username</label>
     <input type="text" name="username" id="username" placeholder="Buat Username" class="form-control @error('username')
     is-invalid
-@enderror">
+@enderror" autocomplete="false">
     @error('username')
         <span class="invalid-feedback" role="alert">
             {{$message}}
@@ -33,7 +33,7 @@
     <label for="phone">Nomor HP</label>
     <input type="number" name="phone" id="phone" placeholder="Masukkan nomor hp" class="form-control @error('phone')
     is-invalid
-@enderror">
+@enderror" autocomplete="off">
     @error('phone')
         <span class="invalid-feedback" role="alert">
             {{$message}}
