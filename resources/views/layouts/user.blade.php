@@ -53,7 +53,9 @@
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
-                        {{Auth::user()->name}}
+                        @auth
+                            {{Auth::user()->name}}
+                        @endauth
                         <i class="far fa-user"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
