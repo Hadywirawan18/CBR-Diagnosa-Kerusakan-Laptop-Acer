@@ -8,9 +8,6 @@ active
 active
 @endsection
 
-@section('menu-bantuan')
-active
-@endsection
 
 @section('content')
 <table class="table table-hover" id="table_id">
