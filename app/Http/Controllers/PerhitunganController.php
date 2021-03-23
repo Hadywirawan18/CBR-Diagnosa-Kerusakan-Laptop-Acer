@@ -77,7 +77,7 @@ class PerhitunganController extends Controller
                 $total_fitur += 1;
 
                 if (in_array($dk->fitur_id, $fitur)) {
-                    array_push($fiturWthBobot, [$dk->fitur_id, $dk->bobot]);
+                    array_push($fiturWthBobot, [$dk->fitur_id, $dk->bobot, $dk->kasus_id]);
                     $total_bobot_terpilih += $dk->bobot;
                     $total_fitur_terpilih += 1;
                 }

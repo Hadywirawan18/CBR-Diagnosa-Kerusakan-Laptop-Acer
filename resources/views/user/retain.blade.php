@@ -48,9 +48,10 @@ menu-open
                         <td>{{$fitur[0]->nama_fitur}}</td>
                         <td>
                             <input type="text" readonly class="form-control" value="{{$fitur[1]}}">
-                            <input type="hidden" readonly name="bobots[]" class="form-control" value="{{$fitur[2]}}">
                         </td>
+                        <input type="hidden" readonly name="bobots[]" class="form-control" value="{{$fitur[2]}}">
                         <input type="hidden" name="fiturs[]" value="{{$fitur[0]->id}}">
+                        <input type="hidden" name="tipe_laptop[]" value="{{$fitur[3]}}">
                     </tr>
                     @endforeach
                     <input type="hidden" name="kasus_id" value="{{$kasus_id}}">

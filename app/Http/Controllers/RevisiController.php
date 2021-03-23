@@ -113,9 +113,14 @@ class RevisiController extends Controller
         $fiturs = [];
         foreach (json_decode($frs) as $fr) {
             $fitur = Fitur::find($fr[0]);
-            array_push($fiturs, [$fitur, $bobot[$fr[1] - 1], $fr[1]]);
+            $kasua = Kasus::find($fr[2]);
+            array_push($fiturs, [$fitur, $bobot[$fr[1] - 1], $fr[1], $kasus->tipe_laptop]);
         }
-        return view('user.retain', ['fiturs' => $fiturs, 'kasus_id' => $kasus->id]);
+        return view('user.retain', [
+            'fiturs' => $fiturs, 
+            'kasus_id' => $kasus->id,
+            'kasus' => $kasus
+        ]);
     }
 
     public function retain_store(Request $request)
@@ -142,20 +147,75 @@ class RevisiController extends Controller
         // mengambil bobot yg di inputkan untuk setiap fitur
         $bobots = $request->input('bobots');
 
+        $tipe_laptop = $request->input('tipe_laptop');
+        $typesAll = [];
+        $typesSame = [];
+
         // loop untuk memasukkan fitur dan bobot ke database DetailKasus satu per satu
         for ($i = 0; $i < count($fiturs); $i++) {
-            $fitur = Fitur::findOrFail($fiturs[$i]);
-
-            $dk = new DetailKasus;
-            $dk->kasus_id = $kasus_id;
-            $dk->fitur_id = $fiturs[$i];
-            $dk->bobot = $bobots[$i];
-            $dk->save();
+            if (!in_array($fiturs[$i], $typesAll)) {
+                array_push($typesAll, [$fiturs[$i], $tipe_laptop[$i]]);
+            } else {
+                if (!in_array($fiturs[$i], $typesSame)) {
+                    array_push($typesSame, [$fiturs[$i], $tipe_laptop[$i]]);
+                }
+            }
         }
 
-        // disini type yg dibawa diawal akan dicek
-        // jika type bernilai add (diakses oleh controller KasusDetailController) maka akan di return seperti berikut
-        // dan sebaliknya akan di return pada else.
+        foreach ($typesSame as $ts) {
+            for ($i=0; $i < count($typesAll); $i++) { 
+                if ($ts == $typesAll[$i]) {
+                    unset($typesAll[$i]);
+                }
+                $typesAll = array_values($typesAll);
+            }
+        }
+
+        foreach ($typesAll as $ta) {
+            for ($i=0; $i < count($fiturs); $i++) { 
+                if ($fiturs[$i] == ta[0]) {
+                    $fitur = Fitur::findOrFail($fiturs[$i]);
+                    $dk = new DetailKasus;
+                    $dk->kasus_id = $kasus_id;
+                    $dk->fitur_id = $fiturs[$i];
+                    $dk->bobot = $bobots[$i];
+                    $dk->save();
+                }
+            }
+        }
+
+        $typeInput;
+        foreach ($typesSame as $ts) {
+            $sameStatus = true;
+            $notSame = [];
+            for ($i = 0; $i < count($fiturs); $i++) {
+                if ($fiturs[$i] == $ts[0]) {
+                    if ($typeInput == $ts[1]) {
+                        $fitur = Fitur::findOrFail($fiturs[$i]);
+                        $dk = new DetailKasus;
+                        $dk->kasus_id = $kasus_id;
+                        $dk->fitur_id = $fiturs[$i];
+                        $dk->bobot = $bobots[$i];
+                        $dk->save();
+                        $sameStatus = false;
+                        break;
+                    } else {
+                        array_push($notSame, [$fiturs[$i], $bobots[$i]]);
+                    }
+                }
+            }
+            if ($sameStatus) {
+                foreach ($notSame as $ns) {
+                    $fitur = Fitur::findOrFail($ns[0]);
+                    $dk = new DetailKasus;
+                    $dk->kasus_id = $kasus_id;
+                    $dk->fitur_id = $ns[0];
+                    $dk->bobot = $ns[1];
+                    $dk->save();
+                }
+            }
+        }
+
         return redirect()->route('tambah-kasus')->with('status', "Kasus \"$kasus->nama_kasus\" berhasil di simpan");
     }
 }
