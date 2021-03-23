@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
     {
         $users = [
             [
-                "name" => "Site Administrator",
+                "name" => "Admin",
                 "username" => "admin",
                 "password" => \Hash::make("admin"),
                 "role" => "admin",

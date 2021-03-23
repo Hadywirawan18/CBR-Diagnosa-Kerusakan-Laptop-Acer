@@ -404,7 +404,7 @@ class FiturSeeder extends Seeder
                 "kode_fitur"=> "F0097"
             ],
             [
-                "nama_fitur"=> "No Power",
+                "nama_fitur"=> "Unstable",
                 "kode_fitur"=> "F0098"
             ],
             [
@@ -438,6 +438,10 @@ class FiturSeeder extends Seeder
             [
                 "nama_fitur"=> "Terdapat tanda silang pada icon battery pada saat di cas",
                 "kode_fitur"=> "F0106"
+            ],
+            [
+                "nama_fitur"=> "Tidak bisa full charge / stuck charge",
+                "kode_fitur"=> "F0107"
             ]
         ];
 
@@ -1400,6 +1404,516 @@ class FiturSeeder extends Seeder
                 "kasus_id"=> "K0062",
                 "fitur_id"=> "F0106",
                 "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0063",
+                "fitur_id"=> "F0024",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0063",
+                "fitur_id"=> "F0025",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0064",
+                "fitur_id"=> "F0044",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0064",
+                "fitur_id"=> "F0045",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0064",
+                "fitur_id"=> "F0043",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0065",
+                "fitur_id"=> "F0059",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0065",
+                "fitur_id"=> "F0090",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0065",
+                "fitur_id"=> "F0107",
+                "bobot"=> "4"
+            ],
+            [
+                "kasus_id"=> "K0066",
+                "fitur_id"=> "F0005",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0066",
+                "fitur_id"=> "F0008",
+                "bobot"=> "1"
+            ],
+            [
+                "kasus_id"=> "K0066",
+                "fitur_id"=> "F0009",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0067",
+                "fitur_id"=> "F0005",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0067",
+                "fitur_id"=> "F0008",
+                "bobot"=> "1"
+            ],
+            [
+                "kasus_id"=> "K0067",
+                "fitur_id"=> "F0009",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0068",
+                "fitur_id"=> "F0051",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0068",
+                "fitur_id"=> "F0053",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0068",
+                "fitur_id"=> "F0054",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0068",
+                "fitur_id"=> "F0056",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0069",
+                "fitur_id"=> "F0059",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0069",
+                "fitur_id"=> "F0061",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0069",
+                "fitur_id"=> "F0106",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0070",
+                "fitur_id"=> "F0059",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0070",
+                "fitur_id"=> "F0061",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0070",
+                "fitur_id"=> "F0106",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0071",
+                "fitur_id"=> "F0012",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0071",
+                "fitur_id"=> "F0013",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0071",
+                "fitur_id"=> "F0010",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0072",
+                "fitur_id"=> "F0051",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0072",
+                "fitur_id"=> "F0053",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0072",
+                "fitur_id"=> "F0054",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0072",
+                "fitur_id"=> "F0056",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0073",
+                "fitur_id"=> "F0011",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0073",
+                "fitur_id"=> "F0015",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0074",
+                "fitur_id"=> "F0011",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0074",
+                "fitur_id"=> "F0015",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0075",
+                "fitur_id"=> "F0024",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0075",
+                "fitur_id"=> "F0025",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0076",
+                "fitur_id"=> "F0090",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0076",
+                "fitur_id"=> "F0091",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0076",
+                "fitur_id"=> "F0005",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0077",
+                "fitur_id"=> "F0044",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0077",
+                "fitur_id"=> "F0043",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0078",
+                "fitur_id"=> "F0012",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0078",
+                "fitur_id"=> "F0013",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0078",
+                "fitur_id"=> "F0010",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0079",
+                "fitur_id"=> "F0012",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0079",
+                "fitur_id"=> "F0013",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0079",
+                "fitur_id"=> "F0010",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0055",
+                "fitur_id"=> "F0090",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0055",
+                "fitur_id"=> "F0091",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0055",
+                "fitur_id"=> "F0005",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0080",
+                "fitur_id"=> "F0090",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0080",
+                "fitur_id"=> "F0091",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0080",
+                "fitur_id"=> "F0005",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0081",
+                "fitur_id"=> "F0018",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0081",
+                "fitur_id"=> "F0019",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0081",
+                "fitur_id"=> "F0020",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0082",
+                "fitur_id"=> "F0030",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0082",
+                "fitur_id"=> "F0032",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0082",
+                "fitur_id"=> "F0033",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0083",
+                "fitur_id"=> "F0065",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0083",
+                "fitur_id"=> "F0066",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0083",
+                "fitur_id"=> "F0064",
+                "bobot"=> "1"
+            ],
+            [
+                "kasus_id"=> "K0084",
+                "fitur_id"=> "F0068",
+                "bobot"=> "2"
+            ],
+            [
+                "kasus_id"=> "K0084",
+                "fitur_id"=> "F0069",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0085",
+                "fitur_id"=> "F0092",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0085",
+                "fitur_id"=> "F0091",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0086",
+                "fitur_id"=> "F0093",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0086",
+                "fitur_id"=> "F0094",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0087",
+                "fitur_id"=> "F0100",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0087",
+                "fitur_id"=> "F0101",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0088",
+                "fitur_id"=> "F0102",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0088",
+                "fitur_id"=> "F0103",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0089",
+                "fitur_id"=> "F0024",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0089",
+                "fitur_id"=> "F0099",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0090",
+                "fitur_id"=> "F0011",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0090",
+                "fitur_id"=> "F0015",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0091",
+                "fitur_id"=> "F0030",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0091",
+                "fitur_id"=> "F0032",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0091",
+                "fitur_id"=> "F0033",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0092",
+                "fitur_id"=> "F0011",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0092",
+                "fitur_id"=> "F0015",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0093",
+                "fitur_id"=> "F0095",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0093",
+                "fitur_id"=> "F0096",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0093",
+                "fitur_id"=> "F0097",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0093",
+                "fitur_id"=> "F0086",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0094",
+                "fitur_id"=> "F0048",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0094",
+                "fitur_id"=> "F0049",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0094",
+                "fitur_id"=> "F0050",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0095",
+                "fitur_id"=> "F0014",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0095",
+                "fitur_id"=> "F0041",
+                "bobot"=> "1"
+            ],
+            [
+                "kasus_id"=> "K0096",
+                "fitur_id"=> "F0041",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0096",
+                "fitur_id"=> "F0042",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0097",
+                "fitur_id"=> "F0082",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0097",
+                "fitur_id"=> "F0083",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0098",
+                "fitur_id"=> "F0085",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0098",
+                "fitur_id"=> "F0082",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0098",
+                "fitur_id"=> "F0084",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0099",
+                "fitur_id"=> "F0086",
+                "bobot"=> "3"
+            ],
+            [
+                "kasus_id"=> "K0099",
+                "fitur_id"=> "F0088",
+                "bobot"=> "5"
+            ],
+            [
+                "kasus_id"=> "K0100",
+                "fitur_id"=> "F0068",
+                "bobot"=> "2"
+            ],
+            [
+                "kasus_id"=> "K0100",
+                "fitur_id"=> "F0070",
+                "bobot"=> "5"
             ]
         ];
 
