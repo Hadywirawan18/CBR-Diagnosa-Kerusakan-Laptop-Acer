@@ -37,7 +37,10 @@ class DataTableController extends Controller
                     . '<a href="' . route('kasus.edit', ['kasus' => $kasus->id]) . '" class="shadow btn btn-block btn-success btn-sm mr-2">Lihat Kasus</a>'
                     . '<button type="button" class="shadow btn btn-block btn-danger btn-sm btn-delete" data-remote="' . route('kasus.destroy', ['kasus' => $kasus->id]) . '">Delete</button>';
             })
-            ->rawColumns(['aksi'])
+            ->addColumn('retain', function ($kasus) {
+                return '<span class="badge badge-warning">'. $kasus->revise_msg .'</span>';
+            })
+            ->rawColumns(['aksi', 'retain'])
             ->toJson();
     }
 

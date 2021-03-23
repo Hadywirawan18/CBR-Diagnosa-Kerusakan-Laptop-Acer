@@ -66,6 +66,7 @@ class PerhitunganController extends Controller
         $total_bobot = 0;
         $total_bobot_terpilih = 0;
         $hasilAkhir = [];
+        $hasilAll = [];
 
         $fiturWthBobot = [];
 
@@ -99,6 +100,7 @@ class PerhitunganController extends Controller
             // array_push($hasilAkhir, $perhitungan);
             $key = $perhitungan['similiaritas'];
             $hasilAkhir[sprintf('%02.2f', $key)] = $perhitungan;
+            array_push($hasilAll, $perhitungan);
 
             $total_bobot = 0;
             $total_bobot_terpilih = 0;
@@ -110,7 +112,8 @@ class PerhitunganController extends Controller
             'solution' => reset($hasilAkhir),
             'fiturs' => json_encode($fiturWthBobot),
             'tipe_laptop' => $tipe_laptop,
-            'nama_kasus' => reset($hasilAkhir)['case_name']
+            'nama_kasus' => reset($hasilAkhir)['case_name'],
+            'hasil_all' => $hasilAll,
         ]);
     }
 

@@ -94,11 +94,11 @@ active
                 {data:'nama_kasus'},
                 {data:'solusi'},
                 {data:'revise_status'},
-                {data:'revise_msg'},
+                {data:'retain'},
                 {data:'aksi', sortable:false},
             ],
             order:[
-                [4, 'desc']
+                [5, 'desc']
             ],
         });
 

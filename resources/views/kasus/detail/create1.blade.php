@@ -29,7 +29,7 @@ active
         </div>
         @endif
 
-        <form action="{{ route('kasus.detail.store1') }}" method="POST">
+        <form action="{{ route('kasus.detail.store1') }}" method="POST" onsubmit="clearSrc()">
             @csrf
             <table class="table table-striped table-bordered table-hover" style="width:100%" id="table_id">
                 <thead>
@@ -69,5 +69,11 @@ active
             order: [[ 0, "asc" ]],
         });
     });
+</script>
+<script>
+    function clearSrc() {
+        var table = $('#table_id').DataTable();
+        table.search('').draw();
+    }
 </script>
 @endsection

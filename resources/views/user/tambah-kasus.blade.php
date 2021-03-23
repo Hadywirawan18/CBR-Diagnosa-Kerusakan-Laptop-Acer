@@ -30,7 +30,7 @@ menu-open
 </div>
 @endif
 
-<form action="{{route('tambah-kasus.store')}}" method="POST">
+<form action="{{route('tambah-kasus.store')}}" method="POST" onsubmit="clearSrc()">
     @csrf
     <div class="row">
         <div class="col-2">
@@ -70,7 +70,12 @@ menu-open
         }],
         select: true,
       });
-
   });
+</script>
+<script>
+    function clearSrc() {
+        var table = $('#table_id').DataTable();
+        table.search('').draw();
+    }
 </script>
 @endsection

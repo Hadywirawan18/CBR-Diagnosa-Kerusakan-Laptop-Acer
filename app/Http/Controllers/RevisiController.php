@@ -6,6 +6,7 @@ use App\DetailKasus;
 use App\Fitur;
 use App\Kasus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RevisiController extends Controller
 {
@@ -98,14 +99,14 @@ class RevisiController extends Controller
         $tipe_laptop = $request->get('tipe_laptop');
         $nama_kasus = $request->get('nama_kasus');
         $solusi = $request->get('solusi');
-        // $rtby = $request -> Auth::user()->name;
+        $rtby = Auth::user()->name;
 
         $kasus = new Kasus;
         $kasus->tipe_laptop = $tipe_laptop;
         $kasus->nama_kasus = $nama_kasus;
         $kasus->solusi = $solusi;
         $kasus->kasus_id = $newKodeKasus;
-        $kasus->revise_msg = "Retain By: ";
+        $kasus->revise_msg = "Retain By: $rtby";
         $kasus->save();
 
         $bobot = ['Sangat Rendah', 'Rendah', 'Sedang', 'Tinggi', 'Sangat Tinggi'];
@@ -113,13 +114,14 @@ class RevisiController extends Controller
         $fiturs = [];
         foreach (json_decode($frs) as $fr) {
             $fitur = Fitur::find($fr[0]);
-            $kasua = Kasus::find($fr[2]);
-            array_push($fiturs, [$fitur, $bobot[$fr[1] - 1], $fr[1], $kasus->tipe_laptop]);
+            $ks = Kasus::find($fr[2]);
+            array_push($fiturs, [$fitur, $bobot[$fr[1] - 1], $fr[1], $ks->tipe_laptop, $ks]);
         }
         return view('user.retain', [
             'fiturs' => $fiturs, 
             'kasus_id' => $kasus->id,
-            'kasus' => $kasus
+            'kasus' => $kasus,
+            'tipe_laptop' => $tipe_laptop,
         ]);
     }
 
@@ -147,75 +149,83 @@ class RevisiController extends Controller
         // mengambil bobot yg di inputkan untuk setiap fitur
         $bobots = $request->input('bobots');
 
-        $tipe_laptop = $request->input('tipe_laptop');
-        $typesAll = [];
-        $typesSame = [];
+        $kasus = $request->input('kasus');
+
+        $tipe_laptop = $request->get('tipe_laptop');
+
+        $dataUnique = [];
+        $dataSame = [];
 
         // loop untuk memasukkan fitur dan bobot ke database DetailKasus satu per satu
         for ($i = 0; $i < count($fiturs); $i++) {
-            if (!in_array($fiturs[$i], $typesAll)) {
-                array_push($typesAll, [$fiturs[$i], $tipe_laptop[$i]]);
+            $data = $fiturs[$i];
+            if (!in_array($data, $dataUnique)) {
+                array_push($dataUnique,$data);
             } else {
-                if (!in_array($fiturs[$i], $typesSame)) {
-                    array_push($typesSame, [$fiturs[$i], $tipe_laptop[$i]]);
+                if (!in_array($data, $dataSame)) {
+                    array_push($dataSame,$data);
+                }
+            }
+        }
+        
+        foreach (array_keys($dataSame) as $ds) {
+            for ($i=0; $i < count($dataUnique); $i++) { 
+                $key = array_keys($dataUnique)[$i];
+                if ($ds == $key) {
+                    unset($dataUnique[$key]);
                 }
             }
         }
 
-        foreach ($typesSame as $ts) {
-            for ($i=0; $i < count($typesAll); $i++) { 
-                if ($ts == $typesAll[$i]) {
-                    unset($typesAll[$i]);
-                }
-                $typesAll = array_values($typesAll);
-            }
-        }
-
-        foreach ($typesAll as $ta) {
-            for ($i=0; $i < count($fiturs); $i++) { 
-                if ($fiturs[$i] == ta[0]) {
-                    $fitur = Fitur::findOrFail($fiturs[$i]);
+        foreach ($dataUnique as $dUnq) {
+            for ($i=0; $i < count($fiturs); $i++) {
+                $data = json_decode($dUnq); 
+                $fitur = json_decode($fiturs[$i]);
+                if ($fitur->id == $data->id) {
+                    $fitur = Fitur::findOrFail($fitur->id);
                     $dk = new DetailKasus;
                     $dk->kasus_id = $kasus_id;
-                    $dk->fitur_id = $fiturs[$i];
+                    $dk->fitur_id = $fitur->id;
                     $dk->bobot = $bobots[$i];
                     $dk->save();
                 }
             }
         }
 
-        $typeInput;
-        foreach ($typesSame as $ts) {
+        $typeInput = $tipe_laptop;
+        foreach ($dataSame as $dSm) {
+            $data = json_decode($dSm);
             $sameStatus = true;
             $notSame = [];
             for ($i = 0; $i < count($fiturs); $i++) {
-                if ($fiturs[$i] == $ts[0]) {
-                    if ($typeInput == $ts[1]) {
-                        $fitur = Fitur::findOrFail($fiturs[$i]);
+                $fitur = json_decode($fiturs[$i]);
+                if ($fitur->id == $data->id) {
+                    if ($typeInput == json_decode($kasus[$i])->tipe_laptop) {
+                        $fitur = Fitur::findOrFail($fitur->id);
                         $dk = new DetailKasus;
                         $dk->kasus_id = $kasus_id;
-                        $dk->fitur_id = $fiturs[$i];
+                        $dk->fitur_id = $fitur->id;
                         $dk->bobot = $bobots[$i];
                         $dk->save();
                         $sameStatus = false;
                         break;
                     } else {
-                        array_push($notSame, [$fiturs[$i], $bobots[$i]]);
+                        array_push($notSame, [$fitur, $bobots[$i]]);
                     }
                 }
             }
             if ($sameStatus) {
                 foreach ($notSame as $ns) {
-                    $fitur = Fitur::findOrFail($ns[0]);
+                    $fitur = Fitur::findOrFail($ns[0]->id);
                     $dk = new DetailKasus;
                     $dk->kasus_id = $kasus_id;
-                    $dk->fitur_id = $ns[0];
+                    $dk->fitur_id = $ns[0]->id;
                     $dk->bobot = $ns[1];
                     $dk->save();
                 }
             }
         }
 
-        return redirect()->route('tambah-kasus')->with('status', "Kasus \"$kasus->nama_kasus\" berhasil di simpan");
+        return redirect()->route('tambah-kasus')->with('status', "Kasus berhasil di simpan");
     }
 }
