@@ -30,7 +30,7 @@ menu-open
         </tr>
     </thead>
     <tbody>
-        @foreach ($hasil_all as $res)
+        @foreach ($result as $res)
         <tr>
             <td>{{$res['kasus_id']}}</td>
             <td>{{$res['case_name']}}</td>

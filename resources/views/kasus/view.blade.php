@@ -234,6 +234,7 @@ active
     $(document).ready( function () {
         var table = $('#table_id').DataTable({
             dom: 'Brtip',
+            paging: false,
             buttons: [
                 {
                     text: 'Tambah Fitur',

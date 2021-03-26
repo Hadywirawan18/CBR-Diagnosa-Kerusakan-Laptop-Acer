@@ -82,6 +82,7 @@ active
         var table = $('#table_id').DataTable({
             processing:true,
             serverside:true,
+            paging:false,
             ajax:"{{ route('getdata.kasus') }}",
             columns:[
                 {data:'nama_kasus'},
