@@ -71,6 +71,7 @@ class PerhitunganController extends Controller
         $fiturWthBobot = [];
 
         foreach ($kasuses as $kasus) {
+            $fiturWthBobotTemp = [];
             $total_fitur = 0;
             $total_fitur_terpilih = 0;
             foreach ($kasus as $dk) {
@@ -78,7 +79,7 @@ class PerhitunganController extends Controller
                 $total_fitur += 1;
 
                 if (in_array($dk->fitur_id, $fitur)) {
-                    array_push($fiturWthBobot, [$dk->fitur_id, $dk->bobot, $dk->kasus_id]);
+                    array_push($fiturWthBobotTemp, [$dk->fitur_id, $dk->bobot, $dk->kasus_id, $dk->id]);
                     $total_bobot_terpilih += $dk->bobot;
                     $total_fitur_terpilih += 1;
                 }
@@ -101,16 +102,23 @@ class PerhitunganController extends Controller
             $key = $perhitungan['similiaritas'];
             $hasilAkhir[sprintf('%02.2f', $key)] = $perhitungan;
             array_push($hasilAll, $perhitungan);
-
+            $fiturWthBobot[sprintf('%02.2f', $key)] = $fiturWthBobotTemp;
             $total_bobot = 0;
             $total_bobot_terpilih = 0;
+        }
+
+        $fiturWB = [];
+        foreach ($fiturWthBobot as $key => $value) {
+            foreach ($value as $v) {
+                array_push($fiturWB, [ $v[0], $v[1], $v[2], $v[3] ]);
+            }
         }
 
         krsort($hasilAkhir);
         return view('user.hasil-perhitungan', [
             'result' => $hasilAkhir,
             'solution' => reset($hasilAkhir),
-            'fiturs' => json_encode($fiturWthBobot),
+            'fiturs' => json_encode($fiturWB),
             'tipe_laptop' => $tipe_laptop,
             'nama_kasus' => reset($hasilAkhir)['case_name'],
             'hasil_all' => $hasilAll,

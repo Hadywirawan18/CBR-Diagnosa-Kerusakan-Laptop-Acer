@@ -25,6 +25,7 @@ Route::match(["GET", "POST"], "/register", function () {
 });
 
 // datatable
+// tambah middleware user
 Route::group(['prefix' => 'getdata'], function () {
     Route::get('kasus', 'DataTableController@getKasus')->name('getdata.kasus');
     Route::get('fitur', 'DataTableController@getFitur')->name('getdata.fitur');
@@ -73,6 +74,7 @@ Route::middleware(['admin'])->group(function () {
 //     return view('layouts.user');
 // });
 
+// add middleware user
 // app histori diagnosa
 Route::group(['prefix' => 'user'], function () {
     Route::get('/', 'HistoriDiagnosaController@index')->name('histori-diagnosa.index');
