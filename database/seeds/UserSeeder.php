@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
                 "address" => "Mataram"
             ],
             [
-                "name" => "Site User",
+                "name" => "Pengguna 1",
                 "username" => "user",
                 "password" => \Hash::make("user"),
                 "role" => "user",

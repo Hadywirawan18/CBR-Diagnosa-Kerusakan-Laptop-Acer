@@ -1902,7 +1902,7 @@ class FiturSeeder extends Seeder
             ],
             [
                 "kasus_id"=> "K0099",
-                "fitur_id"=> "F0088",
+                "fitur_id"=> "F0089",
                 "bobot"=> "5"
             ],
             [
