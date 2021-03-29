@@ -71,15 +71,16 @@ class PerhitunganController extends Controller
         $fiturWthBobot = [];
 
         foreach ($kasuses as $kasus) {
-            $fiturWthBobotTemp = [];
             $total_fitur = 0;
             $total_fitur_terpilih = 0;
+            $fiturCase = [];
             foreach ($kasus as $dk) {
                 $total_bobot += $dk->bobot;
                 $total_fitur += 1;
 
                 if (in_array($dk->fitur_id, $fitur)) {
-                    array_push($fiturWthBobotTemp, [$dk->fitur_id, $dk->bobot, $dk->kasus_id, $dk->id]);
+                    array_push($fiturWthBobot, [$dk->fitur_id, $dk->bobot, $dk->kasus_id]);
+                    array_push($fiturCase, [$dk->fitur_id, $dk->bobot, $dk->kasus_id]);
                     $total_bobot_terpilih += $dk->bobot;
                     $total_fitur_terpilih += 1;
                 }
@@ -96,32 +97,30 @@ class PerhitunganController extends Controller
                 'total_fitur_terpilih' => $total_fitur_terpilih,
                 'total_bobot' => $total_bobot,
                 'total_bobot_terpilih' => $total_bobot_terpilih,
-                'similiaritas' => round($hasil_perhitungan, 2)
+                'similiaritas' => round($hasil_perhitungan, 2),
+                'fitur_case' => $fiturCase,
             ];
             // array_push($hasilAkhir, $perhitungan);
             $key = $perhitungan['similiaritas'];
             $hasilAkhir[sprintf('%02.2f', $key)] = $perhitungan;
+
             array_push($hasilAll, $perhitungan);
-            $fiturWthBobot[sprintf('%02.2f', $key)] = $fiturWthBobotTemp;
+
             $total_bobot = 0;
             $total_bobot_terpilih = 0;
         }
 
-        $fiturWB = [];
-        foreach ($fiturWthBobot as $key => $value) {
-            foreach ($value as $v) {
-                array_push($fiturWB, [ $v[0], $v[1], $v[2], $v[3] ]);
-            }
-        }
-
         krsort($hasilAkhir);
+        $bestResult = array_values($hasilAkhir);
+        $bestFitur = array_shift($bestResult)['fitur_case'];
         return view('user.hasil-perhitungan', [
             'result' => $hasilAkhir,
             'solution' => reset($hasilAkhir),
-            'fiturs' => json_encode($fiturWB),
+            'fiturs' => json_encode($fiturWthBobot),
             'tipe_laptop' => $tipe_laptop,
             'nama_kasus' => reset($hasilAkhir)['case_name'],
             'hasil_all' => $hasilAll,
+            'best_fitur' => json_encode($bestFitur),
         ]);
     }
 

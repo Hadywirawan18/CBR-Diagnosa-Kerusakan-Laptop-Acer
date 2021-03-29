@@ -56,7 +56,7 @@ menu-open
                     @csrf
                     <input type="hidden" name="tipe_laptop" value="{{ $tipe_laptop }}">
                     <input type="hidden" name="nama_kasus" value="{{ $nama_kasus }}">
-                    <input type="hidden" name="fiturs" value="{{ $fiturs }}">
+                    <input type="hidden" name="fiturs" value="{{ $best_fitur }}">
                     <input type="hidden" name="solusi" value="{{ $solution['case_solution'] }}">
                     <button id="btn-revisi" type="submit" class="btn btn-success btn-md">Simpan</button>
                 </form>

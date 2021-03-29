@@ -1,11 +1,11 @@
 @extends('layouts.user')
 
 @section('title')
-Retain Kasus
+Revisi Kasus
 @endsection
 
 @section('title-card')
-Retain
+Revisi
 @endsection
 
 @section('menu-diagnosa')
