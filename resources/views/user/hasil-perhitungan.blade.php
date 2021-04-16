@@ -21,24 +21,47 @@ menu-open
 @endsection
 
 @section('content')
-<table class="table table-hover" id="table_id">
-    <thead>
-        <tr>
-            <th style="width: 20%">Nomor Kasus</th>
-            <th style="width: 60%">Kerusakan</th>
-            <th style="width: 20%">Nilai Similiaritas</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($result as $res)
-        <tr>
-            <td>{{$res['kasus_id']}}</td>
-            <td>{{$res['case_name']}}</td>
-            <td>{{$res['similiaritas']}}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+
+<div class="row mb-3">
+    <div class="col">
+        <table class="table table-hover table-bordered">
+            <thead>
+                <tr>
+                    <th>Nama Fitur Terpilih</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($fitur_user as $fu)
+                <tr>
+                    <td>{{ $fu->nama_fitur }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="row">
+    <div class="col">
+        <table class="table table-hover table-bordered" id="table_id">
+            <thead>
+                <tr>
+                    <th style="width: 20%">Nomor Kasus</th>
+                    <th style="width: 60%">Kerusakan</th>
+                    <th style="width: 20%">Nilai Similiaritas</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($result as $res)
+                <tr>
+                    <td>{{$res['kasus_id']}}</td>
+                    <td>{{$res['case_name']}}</td>
+                    <td>{{$res['similiaritas']}}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 <div class="row">
     <div class="col">
             @if ((float)$solution['similiaritas'] < 0.5) 
@@ -56,7 +79,7 @@ menu-open
                     @csrf
                     <input type="hidden" name="tipe_laptop" value="{{ $tipe_laptop }}">
                     <input type="hidden" name="nama_kasus" value="{{ $nama_kasus }}">
-                    <input type="hidden" name="fiturs" value="{{ $best_fitur }}">
+                    <input type="hidden" name="fiturs" value="{{ $fiturs }}">
                     <input type="hidden" name="solusi" value="{{ $solution['case_solution'] }}">
                     <button id="btn-revisi" type="submit" class="btn btn-success btn-md">Simpan</button>
                 </form>

@@ -68,7 +68,7 @@ class PerhitunganController extends Controller
         $hasilAkhir = [];
         $hasilAll = [];
 
-        $fiturWthBobot = [];
+        $fx = [];
 
         foreach ($kasuses as $kasus) {
             $total_fitur = 0;
@@ -79,7 +79,6 @@ class PerhitunganController extends Controller
                 $total_fitur += 1;
 
                 if (in_array($dk->fitur_id, $fitur)) {
-                    array_push($fiturWthBobot, [$dk->fitur_id, $dk->bobot, $dk->kasus_id]);
                     array_push($fiturCase, [$dk->fitur_id, $dk->bobot, $dk->kasus_id]);
                     $total_bobot_terpilih += $dk->bobot;
                     $total_fitur_terpilih += 1;
@@ -101,6 +100,19 @@ class PerhitunganController extends Controller
                 'fitur_case' => $fiturCase,
             ];
             // array_push($hasilAkhir, $perhitungan);
+
+            foreach ($kasus as $dk) {
+                if (in_array($dk->fitur_id, $fitur)) {
+                    if (isset($fx[$dk->fitur_id])) {
+                        if ($fx[$dk->fitur_id][3] < $hasil_perhitungan) {
+                            $fx[$dk->fitur_id] = [$dk->fitur_id, $dk->bobot, $dk->kasus_id, $hasil_perhitungan];
+                        }
+                    } else {
+                        $fx[$dk->fitur_id] = [$dk->fitur_id, $dk->bobot, $dk->kasus_id, $hasil_perhitungan];
+                    }
+                }
+            }
+
             $key = $perhitungan['similiaritas'];
             $hasilAkhir[sprintf('%02.2f', $key)] = $perhitungan;
 
@@ -110,18 +122,27 @@ class PerhitunganController extends Controller
             $total_bobot_terpilih = 0;
         }
 
+        $fitur_user = [];
+        foreach ($fitur as $fu) {
+            $fit = Fitur::findOrFail($fu);
+            array_push($fitur_user, $fit);
+        }
+
         krsort($hasilAkhir);
         $bestResult = array_values($hasilAkhir);
         $bestFitur = array_shift($bestResult)['fitur_case'];
         return view('user.hasil-perhitungan', [
             'result' => $hasilAkhir,
             'solution' => reset($hasilAkhir),
-            'fiturs' => json_encode($fiturWthBobot),
+            'fiturs' => json_encode($fx),
             'tipe_laptop' => $tipe_laptop,
             'nama_kasus' => reset($hasilAkhir)['case_name'],
             'hasil_all' => $hasilAll,
             'best_fitur' => json_encode($bestFitur),
+            'fitur_user' => $fitur_user,
         ]);
+
+        // return \json_encode($fx);
     }
 
     /**
